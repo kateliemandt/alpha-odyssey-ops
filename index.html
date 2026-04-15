@@ -1,0 +1,1672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Alpha Odyssey · Ops Manual</title>
+<meta name="description" content="Alpha Odyssey Summer 2026 — Master Operations Manual. Supplies, vendors, permits, transportation, and every operational detail for a nine-week Hamptons program." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Cardo:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ─────────────────────────────────────────────────────────────
+   ALPHA ODYSSEY · OPS MANUAL
+   The Captain's Log — copper accent, operational tone
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --navy: #0b1d2c;
+  --navy-2: #132a3d;
+  --navy-3: #1d3a51;
+  --ink: #f3e9cf;
+  --ink-dim: #d9cdb0;
+  --ink-faint: #8e8872;
+  --cream: #f3e9cf;
+  --parchment: #ece0bf;
+  --copper: #b87333;
+  --copper-deep: #8f5a27;
+  --copper-light: #d4956b;
+  --wine: #7a1e23;
+  --wine-deep: #561216;
+  --gold: #c9a34a;
+  --rule: #2a4257;
+  --rule-light: rgba(184, 115, 51, 0.25);
+  --font-display: "Young Serif", "Cardo", "Hoefler Text", Georgia, serif;
+  --font-body:    "Cardo", "Hoefler Text", Georgia, serif;
+  --font-mono:    "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Parchment grain overlay */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+/* Starfield */
+body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 12%, rgba(184,115,51,0.15), transparent 50%),
+    radial-gradient(circle at 82% 78%, rgba(122,30,35,0.12), transparent 55%),
+    radial-gradient(1px 1px at 24% 28%, rgba(243,233,207,0.5) 50%, transparent 55%),
+    radial-gradient(1px 1px at 62% 18%, rgba(243,233,207,0.4) 50%, transparent 55%),
+    radial-gradient(1px 1px at 78% 42%, rgba(243,233,207,0.3) 50%, transparent 55%),
+    radial-gradient(1px 1px at 12% 72%, rgba(243,233,207,0.35) 50%, transparent 55%),
+    radial-gradient(1px 1px at 48% 88%, rgba(243,233,207,0.45) 50%, transparent 55%);
+}
+
+a { color: var(--copper); text-decoration: none; border-bottom: 1px solid var(--rule-light); transition: color .2s, border-color .2s; }
+a:hover { color: var(--cream); border-bottom-color: var(--copper); }
+
+/* ───────── Top nav bar ───────── */
+.topbar {
+  position: sticky; top: 0; z-index: 60;
+  background: rgba(11,29,44,0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+  padding: 10px 0;
+}
+.topbar-inner {
+  max-width: 1340px; margin: 0 auto; padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.topbar .brand-mark {
+  font-family: var(--font-display); font-size: 20px; color: var(--copper);
+}
+.topbar .site-links { display: flex; align-items: center; gap: 8px; }
+.topbar .site-link {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-dim); padding: 7px 12px;
+  border: 1px solid var(--rule); border-radius: 2px;
+  border-bottom: 1px solid var(--rule);
+  transition: all .2s;
+}
+.topbar .site-link:hover { border-color: var(--copper); color: var(--copper); }
+.topbar .site-link.active {
+  background: var(--copper); color: var(--navy); border-color: var(--copper);
+  font-weight: 500;
+}
+
+/* ───────── Layout: sidebar + main ───────── */
+.app {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 960px) {
+  .app { grid-template-columns: 1fr; }
+}
+
+/* ───────── Sidebar TOC ───────── */
+aside.toc {
+  background: #091724;
+  border-right: 1px solid var(--rule);
+  padding: 28px 18px 80px;
+  position: sticky; top: 52px;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+aside.toc::-webkit-scrollbar { width: 5px; }
+aside.toc::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+@media (max-width: 960px) {
+  aside.toc { display: none; }
+}
+.toc-head {
+  font-family: var(--font-mono);
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--copper); margin-bottom: 16px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+}
+.toc-list { list-style: none; }
+.toc-list li { margin-bottom: 2px; }
+.toc-list a {
+  display: block; padding: 7px 10px;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.08em; color: var(--ink-dim);
+  border: none; border-left: 2px solid transparent;
+  border-radius: 0; transition: all .2s;
+  border-bottom: none;
+}
+.toc-list a:hover { color: var(--cream); border-left-color: var(--copper); background: rgba(184,115,51,0.06); }
+.toc-list a.active { color: var(--copper); border-left-color: var(--copper); background: rgba(184,115,51,0.08); }
+.toc-list .toc-num {
+  font-family: var(--font-display); font-size: 14px;
+  color: var(--copper); margin-right: 6px;
+}
+
+/* ───────── Main content ───────── */
+main.content {
+  padding: 0 36px 120px;
+  max-width: 1080px;
+}
+@media (max-width: 960px) { main.content { padding: 0 20px 80px; } }
+
+/* Hero */
+.ops-hero {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0;
+}
+.ops-hero .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--copper); margin-bottom: 10px;
+}
+.ops-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 400; line-height: 1; color: var(--cream);
+  letter-spacing: -0.01em;
+}
+.ops-hero h1 em { color: var(--copper); font-style: italic; }
+.ops-hero .sub {
+  margin-top: 14px; font-style: italic;
+  color: var(--ink-dim); font-size: 17px;
+  max-width: 60ch;
+}
+.ops-hero .tags {
+  margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;
+}
+.ops-hero .tag {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 5px 10px; border: 1px solid var(--rule); border-radius: 2px;
+  color: var(--ink-dim);
+}
+.ops-hero .tag.copper { color: var(--copper); border-color: var(--copper); background: rgba(184,115,51,0.08); }
+
+/* Meander */
+.meander {
+  height: 12px;
+  background-image:
+    repeating-linear-gradient(90deg,
+      var(--copper) 0 2px, transparent 2px 8px,
+      var(--copper) 8px 10px, transparent 10px 16px);
+  opacity: 0.45;
+  margin: 20px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ───────── Section: collapsible <details> ───────── */
+.ops-section {
+  border-bottom: 1px solid var(--rule);
+  padding: 0;
+}
+.ops-section > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 28px 0;
+  display: flex; align-items: baseline; gap: 14px;
+  position: relative;
+}
+.ops-section > summary::-webkit-details-marker { display: none; }
+.ops-section > summary::after {
+  content: "+";
+  font-family: var(--font-mono); font-size: 18px;
+  color: var(--copper); margin-left: auto;
+  transition: transform .2s;
+}
+.ops-section[open] > summary::after { content: "\2212"; }
+
+.section-num {
+  font-family: var(--font-display);
+  font-size: 28px; color: var(--copper);
+  line-height: 1;
+  min-width: 28px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--cream); font-weight: 400;
+  line-height: 1.1;
+}
+
+.section-body {
+  padding: 0 0 40px;
+}
+
+/* Sub-section headers */
+.sub-head {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--copper); margin: 28px 0 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sub-head::before { content: "\25C6"; font-size: 7px; color: var(--copper); }
+.sub-head-lg {
+  font-family: var(--font-display);
+  font-size: 22px; color: var(--cream); font-weight: 400;
+  margin: 32px 0 14px; padding-top: 20px;
+  border-top: 1px dotted var(--rule);
+}
+.sub-head-lg:first-child { border-top: none; padding-top: 0; }
+
+/* ───────── Tables ───────── */
+.ops-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 12px 0 20px;
+}
+.ops-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--copper);
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid var(--copper-deep);
+  background: rgba(184,115,51,0.06);
+  position: sticky; top: 52px; z-index: 5;
+}
+.ops-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(42,66,87,0.6);
+  color: var(--ink-dim);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.ops-table tr:hover td { background: rgba(184,115,51,0.04); }
+.ops-table .item-name { color: var(--cream); font-weight: 700; }
+.ops-table .amazon { font-family: var(--font-mono); font-size: 10px; color: var(--copper-light); letter-spacing: 0.05em; }
+.ops-table .custom-tag {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 2px; margin-left: 4px;
+}
+.ops-table .fluo { background: rgba(184,115,51,0.2); color: var(--copper-light); border: 1px solid var(--copper); }
+.ops-table .build { background: rgba(122,30,35,0.2); color: #e5a7ab; border: 1px solid var(--wine); }
+.ops-table .buy { background: rgba(42,66,87,0.3); color: var(--ink-dim); border: 1px solid var(--rule); }
+
+/* Schedule blocks */
+.schedule-block {
+  background: rgba(184,115,51,0.04);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--copper);
+  padding: 18px 20px;
+  margin: 14px 0;
+}
+.schedule-block .sched-label {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--copper); margin-bottom: 10px;
+}
+.schedule-row {
+  display: grid; grid-template-columns: 160px 1fr; gap: 12px;
+  padding: 6px 0;
+  border-top: 1px dotted rgba(42,66,87,0.5);
+  font-size: 15px;
+}
+.schedule-row:first-of-type { border-top: none; }
+.sched-time {
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--copper-light); letter-spacing: 0.05em;
+  padding-top: 2px;
+}
+.sched-desc { color: var(--ink-dim); }
+.sched-desc strong { color: var(--cream); font-weight: 700; }
+
+/* Bulleted lists */
+.ops-list { list-style: none; margin: 8px 0 16px; }
+.ops-list li {
+  padding-left: 20px; position: relative;
+  margin-bottom: 6px; color: var(--ink-dim); line-height: 1.55;
+}
+.ops-list li::before {
+  content: "\25C6"; position: absolute; left: 0; top: 2px;
+  color: var(--copper); font-size: 8px;
+}
+.ops-list li strong { color: var(--cream); }
+
+/* Status pills */
+.status {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 3px 7px; border-radius: 2px;
+}
+.status.contracted { background: rgba(100,180,100,0.15); color: #8fce8f; border: 1px solid rgba(100,180,100,0.4); }
+.status.needed { background: rgba(184,115,51,0.15); color: var(--copper-light); border: 1px solid var(--copper); }
+.status.researching { background: rgba(42,66,87,0.3); color: var(--ink-dim); border: 1px solid var(--rule); }
+.status.tbd { background: rgba(122,30,35,0.15); color: #e5a7ab; border: 1px solid rgba(122,30,35,0.4); }
+
+/* Prose */
+.ops-prose { color: var(--ink-dim); max-width: 68ch; margin-bottom: 16px; }
+.ops-prose strong { color: var(--cream); }
+
+/* Week header in supplies */
+.week-supply-head {
+  font-family: var(--font-display);
+  font-size: 24px; color: var(--cream);
+  margin: 36px 0 8px; padding-top: 24px;
+  border-top: 2px solid var(--copper-deep);
+}
+.week-supply-head:first-child { border-top: none; padding-top: 0; }
+.week-supply-sub {
+  font-style: italic; color: var(--ink-dim); font-size: 15px;
+  margin-bottom: 16px;
+}
+
+/* Workshop label */
+.workshop-label {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--copper); margin: 22px 0 8px;
+  padding: 6px 10px;
+  background: rgba(184,115,51,0.06);
+  border-left: 3px solid var(--copper);
+}
+.workshop-label .level-tag {
+  color: var(--ink-dim); font-size: 10px;
+}
+
+/* Callout boxes */
+.callout {
+  background: rgba(184,115,51,0.06);
+  border: 1px solid var(--copper-deep);
+  border-left: 3px solid var(--copper);
+  padding: 16px 18px;
+  margin: 16px 0;
+}
+.callout .callout-label {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--copper); margin-bottom: 6px;
+}
+.callout p { color: var(--ink-dim); font-size: 15px; line-height: 1.55; }
+
+/* Inner details (nested collapsibles) */
+details.inner-section {
+  margin: 8px 0;
+  border: 1px solid var(--rule);
+  background: rgba(9,23,36,0.4);
+}
+details.inner-section > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  display: flex; align-items: center; gap: 8px;
+}
+details.inner-section > summary::-webkit-details-marker { display: none; }
+details.inner-section > summary::before {
+  content: "\25B6"; font-size: 8px; color: var(--copper);
+  transition: transform .2s;
+}
+details.inner-section[open] > summary::before { transform: rotate(90deg); }
+details.inner-section > summary:hover { color: var(--cream); }
+details.inner-section .inner-body { padding: 0 16px 16px; }
+
+/* Footer */
+footer.colophon {
+  padding: 48px 36px; text-align: center;
+  color: var(--ink-faint); font-size: 12px;
+  font-family: var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase;
+}
+footer .line {
+  font-family: var(--font-display); font-size: 20px;
+  letter-spacing: 0; text-transform: none;
+  color: var(--copper); font-style: italic;
+  margin-bottom: 10px;
+}
+
+/* Print */
+@media print {
+  body::before, body::after, .topbar, aside.toc { display: none; }
+  .app { grid-template-columns: 1fr; }
+  details { display: block; }
+  details > summary { display: none; }
+  .section-body, details.inner-section .inner-body { display: block !important; }
+  body { color: #000; background: #fff; font-size: 12px; }
+  .ops-table td, .ops-list li, .ops-prose, .sched-desc { color: #222; }
+  .section-title, .week-supply-head, .ops-hero h1 { color: #000; }
+}
+
+/* Animations */
+@keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+.ops-section { animation: rise .4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TOP NAVIGATION BAR
+     ═══════════════════════════════════════════════════════════ -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="brand-mark">Alpha Odyssey</span>
+    <div class="site-links">
+      <a href="https://kateliemandt.github.io/alpha-odyssey-overview/" class="site-link">&nearr; Overview Grid</a>
+      <a href="https://kateliemandt.github.io/alpha-odyssey-briefs/" class="site-link">&nearr; Full Briefs</a>
+      <span class="site-link active">Ops Manual</span>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+
+<!-- ═══════════════════════════════════════════════════════════
+     SIDEBAR TABLE OF CONTENTS
+     ═══════════════════════════════════════════════════════════ -->
+<aside class="toc">
+  <div class="toc-head">Captain's Log &mdash; Contents</div>
+  <ul class="toc-list">
+    <li><a href="#daily-flow"><span class="toc-num">1</span> Daily Flow of Events</a></li>
+    <li><a href="#supplies"><span class="toc-num">2</span> Master Supplies List</a></li>
+    <li><a href="#fabrication"><span class="toc-num">3</span> Things to Make / Fluo</a></li>
+    <li><a href="#merch"><span class="toc-num">4</span> Merch &amp; Odyssey Design</a></li>
+    <li><a href="#bussing"><span class="toc-num">5</span> Bussing / Transport</a></li>
+    <li><a href="#vendors"><span class="toc-num">6</span> Vendor List</a></li>
+    <li><a href="#permits"><span class="toc-num">7</span> Permits Needed</a></li>
+    <li><a href="#ai"><span class="toc-num">8</span> AI Integration Guide</a></li>
+  </ul>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════ -->
+<main class="content">
+
+<div class="ops-hero">
+  <div class="eyebrow">Alpha School &middot; East Hampton &middot; Summer 2026</div>
+  <h1>Ops <em>&amp;</em> Manual</h1>
+  <div class="sub">The ship captain's operational guide for Alpha Odyssey &mdash; nine weeks, four age levels, one venue, every supply, every vendor, every permit. This is the backend. Build it right and nobody sees it.</div>
+  <div class="tags">
+    <span class="tag copper">9 Weeks</span>
+    <span class="tag">36 Workshops</span>
+    <span class="tag">36 Physical Challenges</span>
+    <span class="tag">53 Side Quests</span>
+    <span class="tag copper">~80 Campers</span>
+  </div>
+</div>
+
+<div class="meander"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 1: DAILY FLOW OF EVENTS
+     ═══════════════════════════════════════════════════════════════ -->
+<details class="ops-section" id="daily-flow" open>
+<summary>
+  <span class="section-num">1</span>
+  <span class="section-title">Daily Flow of Events</span>
+</summary>
+<div class="section-body">
+
+<p class="ops-prose">Every day follows the same structural spine. Consistency is the scaffolding &mdash; inside it, the content changes weekly. Three schedule variants: Regular Day (Mon&ndash;Thu), Friday (Test Day), and Monday (Launch Day).</p>
+
+<div class="schedule-block">
+  <div class="sched-label">Regular Day &mdash; Monday through Thursday</div>
+  <div class="schedule-row"><span class="sched-time">8:30 &ndash; 9:00</span><span class="sched-desc"><strong>Dropoff + Side Quest Time.</strong> Kids arrive, check in, and can work on mastery quests at self-serve stations.</span></div>
+  <div class="schedule-row"><span class="sched-time">9:00 &ndash; 9:15</span><span class="sched-desc"><strong>Limitless Launch.</strong> Morning assembly. Week narrative, energy, daily preview.</span></div>
+  <div class="schedule-row"><span class="sched-time">9:15 &ndash; 11:15</span><span class="sched-desc"><strong>2-Hour Learning Block.</strong> Alpha&rsquo;s core academic curriculum. All levels in parallel.</span></div>
+  <div class="schedule-row"><span class="sched-time">11:15 &ndash; 11:30</span><span class="sched-desc"><strong>Transition / Side Quest Window.</strong> Quick quest check-ins, bathroom, water.</span></div>
+  <div class="schedule-row"><span class="sched-time">11:30 &ndash; 12:15</span><span class="sched-desc"><strong>Lunch + Side Quest Window.</strong> Eat, then optional quest work with available counselors.</span></div>
+  <div class="schedule-row"><span class="sched-time">12:15 &ndash; 12:30</span><span class="sched-desc"><strong>Transition.</strong> Change for physical activity, sunscreen, water.</span></div>
+  <div class="schedule-row"><span class="sched-time">12:30 &ndash; 1:15</span><span class="sched-desc"><strong>Physical Challenge.</strong> 45-minute sport/adventure session. All levels rotate through their track.</span></div>
+  <div class="schedule-row"><span class="sched-time">1:15 &ndash; 1:30</span><span class="sched-desc"><strong>Transition / Side Quest Window.</strong> Cool down, change, quick quest attempts.</span></div>
+  <div class="schedule-row"><span class="sched-time">1:30 &ndash; 3:30</span><span class="sched-desc"><strong>Weekly Workshop.</strong> ~2-hour craft/build/culinary/performance session.</span></div>
+  <div class="schedule-row"><span class="sched-time">3:30 &ndash; 3:45</span><span class="sched-desc"><strong>Side Quest / Free Time.</strong> Last quest window of the day.</span></div>
+  <div class="schedule-row"><span class="sched-time">3:45 &ndash; 4:00</span><span class="sched-desc"><strong>Shoutouts.</strong> End-of-day recognition circle. Staff and campers call out specific achievements.</span></div>
+  <div class="schedule-row"><span class="sched-time">4:00</span><span class="sched-desc"><strong>Pickup.</strong></span></div>
+</div>
+
+<div class="schedule-block" style="border-left-color: var(--wine);">
+  <div class="sched-label" style="color: var(--wine);">Friday &mdash; Test Day</div>
+  <div class="schedule-row"><span class="sched-time">8:30 &ndash; 12:15</span><span class="sched-desc"><strong>Same morning structure.</strong> Dropoff, Launch, Learning Block, Lunch.</span></div>
+  <div class="schedule-row"><span class="sched-time">12:30 &ndash; 1:15</span><span class="sched-desc"><strong>Physical Challenge TEST.</strong> Pass/fail. Campers must meet the week&rsquo;s physical standard.</span></div>
+  <div class="schedule-row"><span class="sched-time">1:30 &ndash; 3:30</span><span class="sched-desc"><strong>Weekly Workshop TEST.</strong> Pass/fail. Presentations, demonstrations, take-home artifacts.</span></div>
+  <div class="schedule-row"><span class="sched-time">3:30 &ndash; 3:45</span><span class="sched-desc"><strong>Results Posted.</strong> Challenge Board + Mastery Board updated in real time.</span></div>
+  <div class="schedule-row"><span class="sched-time">3:45 &ndash; 4:00</span><span class="sched-desc"><strong>Shoutouts.</strong> Week recap, standout performances, mastery milestones.</span></div>
+  <div class="schedule-row"><span class="sched-time">4:00</span><span class="sched-desc"><strong>Pickup.</strong></span></div>
+</div>
+
+<div class="schedule-block" style="border-left-color: var(--gold);">
+  <div class="sched-label" style="color: var(--gold);">Monday &mdash; Launch Day</div>
+  <div class="schedule-row"><span class="sched-time">8:30 &ndash; 9:00</span><span class="sched-desc"><strong>Dropoff + Side Quest Time.</strong> Same as regular.</span></div>
+  <div class="schedule-row"><span class="sched-time">9:00 &ndash; 9:20</span><span class="sched-desc"><strong>Extended Limitless Launch (20 min).</strong> New Odyssey chapter introduced. New week&rsquo;s workshops, physical challenge, and narrative arc revealed. Dramatic reading or video.</span></div>
+  <div class="schedule-row"><span class="sched-time">9:20 &ndash; 11:15</span><span class="sched-desc"><strong>2-Hour Learning Block.</strong> Slightly compressed start (5 min shorter).</span></div>
+  <div class="schedule-row"><span class="sched-time">11:15 onward</span><span class="sched-desc"><strong>Same as Regular Day.</strong></span></div>
+</div>
+
+<div class="callout">
+  <div class="callout-label">Side Quest Windows &mdash; Key Operational Note</div>
+  <p>Side quests are threaded through every transition, break, lunch, and dropoff window. They are never a scheduled block &mdash; they fill the cracks. Counselors must have quest materials accessible at all times during these windows. At minimum 2 side-quest stations should be staffed during each window.</p>
+</div>
+
+</div>
+</details>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 2: MASTER SUPPLIES LIST
+     ═══════════════════════════════════════════════════════════════ -->
+<details class="ops-section" id="supplies">
+<summary>
+  <span class="section-num">2</span>
+  <span class="section-title">Master Supplies List</span>
+</summary>
+<div class="section-body">
+
+<p class="ops-prose">Organized by week, then by workshop within each week. Quantity estimates assume <strong>20 kids per level</strong> unless noted. Side quest materials are grouped by category at the end. Physical challenge materials are included per-week alongside workshop supplies.</p>
+
+<!-- ── WEEK 1 ── -->
+<div class="week-supply-head">Week 1 &mdash; The Launch from Ithaca</div>
+<div class="week-supply-sub">Cartography, calligraphy, wax seals, wooden boat building. Soccer (beach). Volleyball (beach).</div>
+
+<div class="workshop-label">WonderLab (K&ndash;1): The Invitation Workshop <span class="level-tag">&mdash; Greetings, Thank-Yous &amp; Wax Seals</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Heavy cardstock, hand-torn paper</td><td>60 sheets</td><td class="amazon">Search Amazon for: Strathmore 400 Series heavy cardstock</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Beeswax sticks</td><td>40 sticks</td><td class="amazon">Source from Quail Hill Farm, Amagansett (local); backup: Search Amazon for: sealing wax sticks assorted</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Low-temp glue guns (for wax melting)</td><td>6 guns</td><td class="amazon">Search Amazon for: mini low-temp glue gun craft</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Brass initial seal stamps</td><td>20 stamps (one per camper, kept all summer)</td><td class="amazon">Search Amazon for: brass initial wax seal stamp set alphabet</td><td><span class="custom-tag buy">Buy</span> &mdash; Campers choose their letter Day 1</td></tr>
+<tr><td class="item-name">Washable ink pads + alphabet stamps</td><td>4 ink pads, 2 alphabet sets</td><td class="amazon">Search Amazon for: washable ink pad craft stamp set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Pre-stamped mailing envelopes</td><td>25</td><td>Post office</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Colored pencils + fine-tip markers</td><td>4 packs of 12</td><td class="amazon">Search Amazon for: Crayola colored pencils 12-pack</td><td><span class="custom-tag buy">Buy</span> &mdash; Shared across program</td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L1 (2nd&ndash;3rd): The Navigator's Chart + The Scribe's Farewell <span class="level-tag">&mdash; Cartography &amp; Copperplate Calligraphy (split week)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Large-format drawing paper</td><td>40 sheets</td><td class="amazon">Search Amazon for: large format drawing paper 18x24</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Rulers, compasses, protractors</td><td>20 each</td><td class="amazon">Search Amazon for: student geometry set bulk</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Compass (magnetic, orienteering)</td><td>10</td><td class="amazon">Search Amazon for: Silva Starter orienteering compass</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Calligraphy dip pens + nibs</td><td>20 holders, 40 nibs</td><td class="amazon">Search Amazon for: Speedball oblique calligraphy pen holder set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Calligraphy ink (walnut, black)</td><td>4 bottles</td><td class="amazon">Search Amazon for: Sumi ink calligraphy bottle</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Practice paper (calligraphy guidelines)</td><td>200 sheets</td><td class="amazon">Search Amazon for: calligraphy practice paper pad</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2 (4th&ndash;5th): Copperplate Calligraphy <span class="level-tag">&mdash; Formal script, Odyssey short story</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Oblique pen holders + Nikko G nibs</td><td>20 holders, 40 nibs</td><td class="amazon">Search Amazon for: oblique calligraphy pen holder Nikko G nib</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Sumi ink + walnut ink</td><td>4 bottles</td><td class="amazon">Search Amazon for: Tom Norton walnut ink calligraphy</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Heavy writing paper (cream, 32lb)</td><td>100 sheets</td><td class="amazon">Search Amazon for: Strathmore Writing Series cream paper 32lb</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Practice pads (guide sheets)</td><td>20 pads</td><td class="amazon">Search Amazon for: Rhodia dot pad A4</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">MS (6th&ndash;8th): The Shipwright's Trial <span class="level-tag">&mdash; Wooden Boat Build (Fluo-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Eastern white cedar planks</td><td>20 boards (North Fork lumber)</td><td>Local lumber supplier, North Fork</td><td><span class="custom-tag fluo">Fluo</span> &mdash; Pre-cut blanks</td></tr>
+<tr><td class="item-name">Marine varnish (spar urethane)</td><td>2 quarts</td><td class="amazon">Search Amazon for: Minwax Helmsman spar urethane quart</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Cotton sail fabric</td><td>10 yards</td><td class="amazon">Search Amazon for: unbleached cotton canvas fabric yard</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Cotton sail thread + needles</td><td>4 spools, 20 needles</td><td class="amazon">Search Amazon for: heavy-duty cotton thread sail repair</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Hand tools (block planes, rasps, sandpaper)</td><td>10 planes, 10 rasps, bulk sandpaper</td><td class="amazon">Search Amazon for: Stanley small block plane; Search Amazon for: wood rasp set</td><td><span class="custom-tag fluo">Fluo</span> provides tools</td></tr>
+<tr><td class="item-name">Brass wood screws, tacks, copper nails</td><td>Assorted, 200+ pcs</td><td class="amazon">Search Amazon for: brass wood screw assortment small boat</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Wood glue (Titebond III, waterproof)</td><td>2 bottles</td><td class="amazon">Search Amazon for: Titebond III ultimate wood glue</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 1 <span class="level-tag">&mdash; Beach Soccer (WL+L1, L2+MS), Pickleball (L2), Beach Volleyball (MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Soccer balls (Size 3, sand-appropriate)</td><td>10</td><td class="amazon">Search Amazon for: size 3 soccer ball beach sand</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Soccer balls (Size 4, sand-appropriate)</td><td>6</td><td class="amazon">Search Amazon for: size 4 soccer ball beach</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Pop-up soccer goals</td><td>4</td><td class="amazon">Search Amazon for: pop-up soccer goal portable 4ft</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Cones (field markers)</td><td>40</td><td class="amazon">Search Amazon for: disc cones 50 pack training</td><td><span class="custom-tag buy">Buy</span> &mdash; Shared all summer</td></tr>
+<tr><td class="item-name">Pinnies/bibs</td><td>40 (2 colors)</td><td class="amazon">Search Amazon for: mesh scrimmage vest youth 12 pack</td><td><span class="custom-tag buy">Buy</span> &mdash; Shared all summer</td></tr>
+<tr><td class="item-name">Pickleball paddles (youth-sized)</td><td>12</td><td class="amazon">Search Amazon for: youth pickleball paddle set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Pickleballs</td><td>24</td><td class="amazon">Search Amazon for: outdoor pickleballs 12-pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Portable pickleball net</td><td>2</td><td class="amazon">Search Amazon for: portable pickleball net regulation</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Beach volleyballs (Mikasa VLS300)</td><td>4</td><td class="amazon">Search Amazon for: Mikasa VLS300 beach volleyball</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Beach volleyball net + poles</td><td>1 set</td><td class="amazon">Search Amazon for: portable beach volleyball net set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<!-- ── WEEK 2 ── -->
+<div class="week-supply-head">Week 2 &mdash; The Island of the Lotus Eaters</div>
+<div class="week-supply-sub">Sensory foraging, French macarons, chocolate tempering, omakase sushi. Kickball, beach soccer.</div>
+
+<div class="workshop-label">WonderLab: The Enchanted Garden <span class="level-tag">&mdash; Herb foraging &amp; sensory garden</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Herb seedlings (sage, rosemary, mint, basil, thyme)</td><td>5 varieties &times; 6 plants each</td><td>Quail Hill Farm, Amagansett (local)</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Transplant pots and soil</td><td>20 pots, 2 bags potting soil</td><td class="amazon">Search Amazon for: terracotta pots 4-inch 20 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Blindfolds (soft sleep masks)</td><td>24</td><td class="amazon">Search Amazon for: sleep mask bulk pack 24</td><td><span class="custom-tag buy">Buy</span> &mdash; Shared with side quests</td></tr>
+<tr><td class="item-name">Plant labels + markers</td><td>40 labels, 20 markers</td><td class="amazon">Search Amazon for: wooden plant labels stakes 50 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Wooden herb boxes (take-home)</td><td>20</td><td class="amazon">Search Amazon for: small wooden planter box herb garden</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Spray bottles</td><td>10</td><td class="amazon">Search Amazon for: small spray bottle plant mister</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L1: The Lotus Confection <span class="level-tag">&mdash; French Macarons (Specialist-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Almond flour</td><td>5 lbs</td><td class="amazon">Search Amazon for: Bob's Red Mill almond flour 3lb</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Powdered sugar</td><td>5 lbs</td><td>Grocery</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Egg whites (pasteurized, carton)</td><td>2 quarts</td><td>Grocery</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Cream of tartar, granulated sugar, butter, cream</td><td>Standard baking quantities</td><td>Grocery</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Gel food coloring set</td><td>2 sets</td><td class="amazon">Search Amazon for: AmeriColor gel food coloring set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Silicone macaron baking mats</td><td>6</td><td class="amazon">Search Amazon for: silicone macaron baking mat template</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Piping bags + round tips</td><td>40 bags, 10 tips</td><td class="amazon">Search Amazon for: disposable piping bags 16-inch 50 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Gift boxes (macaron presentation)</td><td>20</td><td class="amazon">Search Amazon for: macaron box 6-count kraft paper</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Stand mixer access</td><td>2&ndash;3 mixers</td><td>Specialist may bring; backup: Search Amazon for: KitchenAid 5-quart stand mixer</td><td>Confirm with pastry chef</td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2: The Alchemist's Temptation <span class="level-tag">&mdash; Chocolate Tempering (Specialist-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Couverture chocolate (dark, milk, white)</td><td>10 lbs total</td><td class="amazon">Search Amazon for: Callebaut couverture chocolate callets</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Chocolate molds (assorted shapes)</td><td>20 molds</td><td class="amazon">Search Amazon for: polycarbonate chocolate molds assorted</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Marble slab or granite board (tempering surface)</td><td>2</td><td class="amazon">Search Amazon for: marble pastry board 16x20</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Offset spatulas, thermometers</td><td>6 spatulas, 6 thermometers</td><td class="amazon">Search Amazon for: instant read thermometer chocolate; offset spatula set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Double boilers / bain-marie pots</td><td>4 sets</td><td class="amazon">Search Amazon for: double boiler pot stainless steel</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Presentation boxes</td><td>20</td><td class="amazon">Search Amazon for: chocolate gift box truffle 12 count</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">MS: The Feast of Forgetfulness <span class="level-tag">&mdash; Omakase Sushi (Specialist-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Sushi-grade fish (sourced from Montauk)</td><td>10 lbs assorted</td><td>Local fishmonger, Montauk / Gosman's</td><td><span class="custom-tag buy">Buy</span> &mdash; Day-of sourcing required</td></tr>
+<tr><td class="item-name">Sushi rice, rice vinegar, nori</td><td>10 lbs rice, 2 bottles vinegar, 100 sheets nori</td><td>Grocery / Asian market</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Bamboo rolling mats (makisu)</td><td>20</td><td class="amazon">Search Amazon for: bamboo sushi rolling mat set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Sharp knives (chef provides) + kid-safe knives</td><td>20 kid-safe, chef brings own</td><td class="amazon">Search Amazon for: Opinel Le Petit Chef kids knife set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Soy sauce, wasabi, pickled ginger, sesame</td><td>Standard restaurant portions</td><td>Grocery / Asian market</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Serving plates / platters</td><td>20 individual plates</td><td class="amazon">Search Amazon for: rectangular sushi plate ceramic set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 2 <span class="level-tag">&mdash; Animal Circuit (WL), Kickball (L1, L2), Beach Soccer (L2+MS), Paddleboard (MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Rope net (lizard crawl station)</td><td>1</td><td class="amazon">Search Amazon for: climbing cargo net 8x4 ft</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Rubber kickballs</td><td>6</td><td class="amazon">Search Amazon for: kickball playground ball 10-inch</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Stand-up paddleboards (youth-sized)</td><td>10 boards</td><td>Rental from local outfitter / Three Mile Harbor</td><td>Rental &mdash; confirm vendor</td></tr>
+<tr><td class="item-name">PFDs (life jackets, youth)</td><td>20</td><td class="amazon">Search Amazon for: youth life jacket Coast Guard approved</td><td><span class="custom-tag buy">Buy</span> &mdash; Used all water weeks</td></tr>
+</tbody>
+</table>
+
+<!-- ── WEEK 3 ── -->
+<div class="week-supply-head">Week 3 &mdash; The Cyclops' Forge</div>
+<div class="week-supply-sub">Clay lanterns, coil/slab pottery, wheel-throwing, blacksmithing. Tug-of-war, climbing wall, ninja course, paddleboard, pickleball.</div>
+
+<div class="workshop-label">WonderLab: The Cyclops Lantern <span class="level-tag">&mdash; Clay lantern with eye-shaped opening</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Earthenware clay (low-fire or air-dry)</td><td>50 lbs</td><td class="amazon">Search Amazon for: Amaco air-dry clay 25lb</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Wooden modeling tools</td><td>20 sets</td><td class="amazon">Search Amazon for: pottery clay sculpting tools set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Slip (milk-wash)</td><td>Prepared from clay</td><td>Made on-site</td><td><span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Sponges, canvas work boards</td><td>20 sponges, 20 boards</td><td class="amazon">Search Amazon for: pottery sponge set; canvas work board clay</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Tea light candles + lighters</td><td>30 candles, 4 lighters</td><td class="amazon">Search Amazon for: tea light candles bulk 100 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Kiln access (or air-dry alternative)</td><td>1 kiln firing</td><td>JCH or local ceramics studio</td><td>Confirm kiln availability</td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L1: Vessels of Escape <span class="level-tag">&mdash; Coil &amp; Slab Pottery (Specialist-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Stoneware clay</td><td>50 lbs</td><td class="amazon">Search Amazon for: Laguna EM-210 stoneware clay 25lb</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Rolling pins, guides, slab cutters</td><td>10 rolling pins, 20 guide sticks</td><td class="amazon">Search Amazon for: wooden rolling pin clay slab</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Glazes (food-safe, assorted)</td><td>6 colors</td><td class="amazon">Search Amazon for: Amaco glaze set pint food safe</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Kiln firing (2 firings: bisque + glaze)</td><td>2 firings</td><td>Local ceramics studio</td><td>Confirm with ceramicist</td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2: The One-Eyed Bowl <span class="level-tag">&mdash; Wheel Throwing (Specialist-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Stoneware clay (mid-fire)</td><td>80 lbs</td><td class="amazon">Search Amazon for: Laguna EM-210 stoneware clay 25lb</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Pottery wheels (electric, tabletop)</td><td>6&ndash;8 wheels</td><td>Specialist brings OR: Search Amazon for: Shimpo Aspire tabletop pottery wheel</td><td>Confirm with ceramicist &mdash; may need rental</td></tr>
+<tr><td class="item-name">Wire clay cutters, ribs, sponges</td><td>20 each</td><td class="amazon">Search Amazon for: pottery tool kit wire cutter rib sponge</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Glazes + kiln access</td><td>See L1</td><td>See above</td><td>Shared with L1 pottery</td></tr>
+<tr><td class="item-name">Canvas aprons</td><td>20</td><td class="amazon">Search Amazon for: canvas apron pottery kids adjustable</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">MS: Forging the Stake <span class="level-tag">&mdash; Blacksmithing (Specialist-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Mild steel bar stock (3/8")</td><td>40 pieces</td><td>Local metal supplier or specialist brings</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Portable forge</td><td>1&ndash;2</td><td>Specialist brings</td><td>Confirm with blacksmith</td></tr>
+<tr><td class="item-name">Anvil</td><td>1&ndash;2</td><td>Specialist brings</td><td>Confirm with blacksmith</td></tr>
+<tr><td class="item-name">Hammer set (cross-peen, ball-peen)</td><td>10 hammers</td><td>Specialist brings or: Search Amazon for: ball peen hammer set blacksmithing</td><td>Confirm with blacksmith</td></tr>
+<tr><td class="item-name">Tongs (various jaw types)</td><td>10 pairs</td><td>Specialist brings</td><td>Confirm with blacksmith</td></tr>
+<tr><td class="item-name">Safety: leather gloves, aprons, safety glasses</td><td>20 gloves, 20 glasses, 10 aprons</td><td class="amazon">Search Amazon for: heat resistant leather gloves welding; safety glasses ANSI; leather blacksmith apron</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Quench bucket + water</td><td>2 buckets</td><td>On-site</td><td></td></tr>
+<tr><td class="item-name">Fire extinguisher</td><td>2</td><td class="amazon">Search Amazon for: fire extinguisher 5lb ABC</td><td><span class="custom-tag buy">Buy</span> &mdash; General safety supply</td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 3 <span class="level-tag">&mdash; Stomp (WL), Climbing Wall (L1), Ninja Course (L2), Paddleboard/Pickleball (MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Portable Bluetooth speaker</td><td>2</td><td class="amazon">Search Amazon for: JBL Flip 6 Bluetooth speaker</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Climbing wall (cargo net 8 ft)</td><td>1</td><td class="amazon">Search Amazon for: climbing cargo net 8x4 ft outdoor</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Balance beam, monkey bars (rented or venue)</td><td>1 each</td><td>Ropes course facility or rental</td><td>Confirm venue</td></tr>
+<tr><td class="item-name">Stand-up paddleboards + PFDs</td><td>See W2</td><td>See Week 2 rental</td><td>Same rental</td></tr>
+<tr><td class="item-name">Stopwatches</td><td>6</td><td class="amazon">Search Amazon for: digital stopwatch bulk 6 pack</td><td><span class="custom-tag buy">Buy</span> &mdash; Shared all summer</td></tr>
+</tbody>
+</table>
+
+<!-- ── WEEK 4 ── -->
+<div class="week-supply-head">Week 4 &mdash; The Bag of Winds</div>
+<div class="week-supply-sub">Rokkaku kites, paper marbling, Olympic archery, trebuchet build. Javelin, obstacle courses.</div>
+
+<div class="workshop-label">WonderLab: Catching the West Wind <span class="level-tag">&mdash; Rokkaku Kite Building</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Bamboo dowel spars (3/16")</td><td>60 spars</td><td class="amazon">Search Amazon for: bamboo dowel rods 3/16 inch 36-inch</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Ripstop nylon sail fabric</td><td>10 yards</td><td class="amazon">Search Amazon for: ripstop nylon fabric yard kite</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Cotton kite string (200 ft spools)</td><td>20 spools</td><td class="amazon">Search Amazon for: cotton kite string 200 foot spool</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fabric markers</td><td>4 sets</td><td class="amazon">Search Amazon for: Tulip fabric markers assorted</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Lashing twine, craft glue, tail ribbon</td><td>Assorted</td><td class="amazon">Search Amazon for: waxed lashing twine; craft glue sticks; satin ribbon assorted</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L1: The Winds Made Visible + The Wind Reader's Arrow <span class="level-tag">&mdash; Paper Marbling &amp; Archery (split week)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Carrageenan powder</td><td>2 lbs</td><td class="amazon">Search Amazon for: carrageenan powder paper marbling</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Acrylic marbling paints</td><td>10 colors</td><td class="amazon">Search Amazon for: acrylic paint marbling set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Shallow marbling trays</td><td>6</td><td class="amazon">Search Amazon for: shallow tray marbling 9x12</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Absorbent paper (Mulberry, printmaking)</td><td>100 sheets</td><td class="amazon">Search Amazon for: mulberry paper marbling printing</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Archery: youth recurve bows</td><td>6</td><td class="amazon">Search Amazon for: Genesis Original compound bow youth</td><td><span class="custom-tag buy">Buy</span> or specialist provides</td></tr>
+<tr><td class="item-name">Arrows (fiberglass, youth)</td><td>30</td><td class="amazon">Search Amazon for: fiberglass arrows youth 26-inch</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Archery targets (foam block)</td><td>4</td><td class="amazon">Search Amazon for: foam archery target block</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Arm guards + finger tabs</td><td>12 each</td><td class="amazon">Search Amazon for: archery arm guard youth; finger tab leather</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2: The Forge & The Wheel <span class="level-tag">&mdash; Pottery (cont.) + Archery (Specialist-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Stoneware clay (continued from W3)</td><td>40 lbs additional</td><td>See W3</td><td></td></tr>
+<tr><td class="item-name">Archery equipment</td><td>See L1 above</td><td>Shared equipment</td><td></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">MS: The Forge & The Wheel <span class="level-tag">&mdash; Trebuchet Build (Fluo-led) + Pottery</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Trebuchet frame components (pre-cut lumber)</td><td>10 kits</td><td>Fluo fabricates frame components</td><td><span class="custom-tag fluo">Fluo</span></td></tr>
+<tr><td class="item-name">Counterweight materials (sand, water jugs)</td><td>Assorted</td><td>On-site + hardware store</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Sling rope, release pins, hardware</td><td>Per kit</td><td class="amazon">Search Amazon for: paracord 550 100ft; carabiner set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Tennis balls (projectiles)</td><td>48</td><td class="amazon">Search Amazon for: Penn tennis balls 24 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 4 <span class="level-tag">&mdash; Games of Aeolia (WL), Javelin (L1), Wind-Tossed Gauntlet (L2), Warrior of the Wind (MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Foam javelins (turbojav, age-appropriate)</td><td>12</td><td class="amazon">Search Amazon for: turbojav foam javelin youth</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Salmon ladder rungs + uprights</td><td>1 setup</td><td><span class="custom-tag fluo">Fluo</span> builds or ropes course venue</td><td><span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Cargo net (8 ft &times; 6 ft)</td><td>1</td><td>See W3</td><td>Shared</td></tr>
+</tbody>
+</table>
+
+<!-- ── WEEK 5 ── -->
+<div class="week-supply-head">Week 5 &mdash; Circe's Island</div>
+<div class="week-supply-sub">Rube Goldberg machine (WL+L1 joint), natural dye shibori (WL alt), cold-process soap (L1 alt), scent formulas (L2), surfboard shaping (MS, Fluo-led). Surfing, capture the flag.</div>
+
+<div class="workshop-label">WonderLab + L1 (Joint): The Transformation Machine <span class="level-tag">&mdash; Rube Goldberg Contraption</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Wooden ramps and adjustable tracks</td><td>20+ pieces</td><td class="amazon">Search Amazon for: wooden marble run ramps set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Dominoes (bulk)</td><td>200+</td><td class="amazon">Search Amazon for: wooden dominoes bulk set 200</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Marbles + ball bearings</td><td>100 marbles, 20 ball bearings</td><td class="amazon">Search Amazon for: glass marbles bulk 100 pack; steel ball bearings assorted</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">PVC pipe sections, cardboard tubes, funnels</td><td>Assorted</td><td class="amazon">Search Amazon for: PVC pipe cut assortment craft</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Duct tape + hot glue (guide-operated)</td><td>10 rolls tape, 4 glue guns</td><td class="amazon">Search Amazon for: duct tape assorted colors; hot glue gun sticks</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Tempera paint + brushes</td><td>10 colors, 20 brushes</td><td class="amazon">Search Amazon for: Crayola tempera paint set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Bells, cups, small noisemakers</td><td>Assorted</td><td class="amazon">Search Amazon for: small brass bells craft; paper cups bulk</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2: The Shape-Shifter's Art <span class="level-tag">&mdash; Scent Formulas / Perfumery</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Essential oils (lavender, eucalyptus, citrus, etc.)</td><td>12 oils</td><td class="amazon">Search Amazon for: essential oil set 12 pack aromatherapy</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Carrier oil (jojoba, sweet almond)</td><td>16 oz each</td><td class="amazon">Search Amazon for: jojoba oil carrier cold pressed 16oz</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Small glass rollerball bottles</td><td>30</td><td class="amazon">Search Amazon for: glass rollerball bottles 10ml 24 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Perfumer's testing strips</td><td>200</td><td class="amazon">Search Amazon for: perfume testing strips fragrance 100 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Dropper pipettes</td><td>50</td><td class="amazon">Search Amazon for: plastic dropper pipettes 3ml 100 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2 + MS (Joint): The Shape-Shifter's Art <span class="level-tag">&mdash; Surfboard Shaping (Fluo-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Polyurethane foam blank (surfboard)</td><td>2 blanks</td><td>Specialty surf supply; Fluo sources</td><td><span class="custom-tag fluo">Fluo</span></td></tr>
+<tr><td class="item-name">Fiberglass cloth (6 oz)</td><td>10 yards</td><td>Specialty surf supply; Fluo sources</td><td><span class="custom-tag fluo">Fluo</span></td></tr>
+<tr><td class="item-name">Polyester resin + catalyst</td><td>2 gallons</td><td>Specialty surf supply</td><td><span class="custom-tag fluo">Fluo</span></td></tr>
+<tr><td class="item-name">Shaping tools (surform, planer, sandpaper 60&ndash;220 grit)</td><td>Per blank</td><td>Fluo provides</td><td><span class="custom-tag fluo">Fluo</span></td></tr>
+<tr><td class="item-name">Surfboard shaping racks</td><td>2 racks</td><td>Fluo builds</td><td><span class="custom-tag fluo">Fluo</span> <span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Respirators + safety goggles</td><td>20 masks, 20 goggles</td><td class="amazon">Search Amazon for: 3M N95 respirator mask; safety goggles splash proof</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fin boxes + fins</td><td>Per board</td><td>Specialty surf supply</td><td><span class="custom-tag fluo">Fluo</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 5 <span class="level-tag">&mdash; Spinning Spell (WL), Island Game (L1), Surfing (L2+MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Soft-top surfboards</td><td>10&ndash;12 boards</td><td>Rental from local surf school / outfitter, Ditch Plains</td><td>Rental &mdash; confirm vendor + instructor</td></tr>
+<tr><td class="item-name">Wetsuits (youth sizes)</td><td>20</td><td>Rental alongside surfboards</td><td>Rental</td></tr>
+<tr><td class="item-name">Flags/bandanas (capture the flag)</td><td>20</td><td class="amazon">Search Amazon for: flag football belt set youth</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<!-- ── WEEK 6 ── -->
+<div class="week-supply-head">Week 6 &mdash; The Descent to the Underworld</div>
+<div class="week-supply-sub">Shadow puppets, linocut printmaking, Coptic bookbinding, darkroom photography. Tug-of-war, blacklight dash, ropes course, synchronized swimming.</div>
+
+<div class="workshop-label">WonderLab: Shadows of the Dead <span class="level-tag">&mdash; Shadow Puppet Making &amp; Performance</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Cardstock and chipboard</td><td>60 sheets</td><td class="amazon">Search Amazon for: black chipboard sheets 12x18</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Brass paper fasteners</td><td>200</td><td class="amazon">Search Amazon for: brass paper fasteners 1-inch 100 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Tissue paper (translucent, colored)</td><td>60 sheets</td><td class="amazon">Search Amazon for: tissue paper colored translucent sheets</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Wooden dowels (puppet sticks)</td><td>60</td><td class="amazon">Search Amazon for: wooden dowels 12-inch 1/4-inch 50 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">White bedsheets (for screen)</td><td>2</td><td class="amazon">Search Amazon for: white cotton flat sheet twin</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Clip lamps with LED bulbs</td><td>4</td><td class="amazon">Search Amazon for: clip lamp reflector LED bulb</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L1: Marks from the Dark <span class="level-tag">&mdash; Linocut Printmaking</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Soft-cut linoleum blocks (Speedball)</td><td>40 blocks</td><td class="amazon">Search Amazon for: Speedball Speedy Carve linoleum block</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Linoleum cutting tools (Speedball set)</td><td>20 sets</td><td class="amazon">Search Amazon for: Speedball linoleum cutter set assorted blades</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Block printing ink (water-based, black + colors)</td><td>6 tubes</td><td class="amazon">Search Amazon for: Speedball water-based block printing ink set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Brayer rollers</td><td>10</td><td class="amazon">Search Amazon for: Speedball brayer roller 4-inch</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Printmaking paper</td><td>100 sheets</td><td class="amazon">Search Amazon for: Rives BFK printmaking paper sheets</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2: The Book of the Dead + Light from Darkness <span class="level-tag">&mdash; Coptic Bookbinding + Darkroom Intro (split week)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Heavy text-weight paper (signatures)</td><td>200 sheets</td><td class="amazon">Search Amazon for: Mohawk Via text-weight paper cream</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Book board (davey board)</td><td>20 sheets</td><td class="amazon">Search Amazon for: book board davey board chipboard sheets</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Waxed linen thread</td><td>4 spools</td><td class="amazon">Search Amazon for: waxed linen thread bookbinding</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Large-eye tapestry needles</td><td>30</td><td class="amazon">Search Amazon for: tapestry needles large eye blunt</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Bone folders, awls</td><td>20 each</td><td class="amazon">Search Amazon for: bone folder bookbinding; bookbinding awl</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Decorative cover paper / fabric</td><td>Assorted</td><td class="amazon">Search Amazon for: decorative book cloth bookbinding</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">MS: Light from Darkness + The Book of the Dead <span class="level-tag">&mdash; Darkroom Photography (Fluo-led) + Bookbinding</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">35mm SLR film cameras (manual exposure)</td><td>8&ndash;10 cameras</td><td>Fluo provides or vintage sourced</td><td><span class="custom-tag fluo">Fluo</span></td></tr>
+<tr><td class="item-name">Black &amp; white film (Ilford HP5 400, 36 exp)</td><td>20 rolls</td><td class="amazon">Search Amazon for: Ilford HP5 Plus 400 35mm 36 exposure</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Darkroom chemicals (developer, stop bath, fixer)</td><td>1L each</td><td class="amazon">Search Amazon for: Ilford Ilfosol 3 film developer; Ilford Ilfostop; Ilford Rapid Fixer</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Enlarger + safe light + trays</td><td>1 enlarger setup</td><td>Fluo darkroom setup</td><td><span class="custom-tag fluo">Fluo</span> <span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Photographic paper (8&times;10, RC, multigrade)</td><td>100 sheets</td><td class="amazon">Search Amazon for: Ilford Multigrade RC photo paper 8x10 100</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Film developing tanks + reels</td><td>4 tanks</td><td class="amazon">Search Amazon for: Paterson film developing tank</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Tongs, graduated cylinders, timer</td><td>4 each</td><td class="amazon">Search Amazon for: darkroom print tongs set; graduated cylinder 500ml</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 6 <span class="level-tag">&mdash; Warrior Dance (WL), Underworld Dash (L1, blacklight), Shadow Court (L2), Ropes Course + Synchro (MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Tug-of-war ropes (age-appropriate)</td><td>2</td><td class="amazon">Search Amazon for: tug of war rope cotton 20ft</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">UV / blacklight lamps</td><td>6</td><td class="amazon">Search Amazon for: UV blacklight flood lamp LED</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fluorescent tape + paint (for blacklight course)</td><td>6 rolls tape, 4 cans paint</td><td class="amazon">Search Amazon for: fluorescent neon tape UV reactive; neon glow paint UV</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Basketballs (size 5, intermediate)</td><td>8</td><td class="amazon">Search Amazon for: Spalding basketball size 5 youth</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Pool access for synchronized swimming</td><td>1 pool</td><td>JCH pool or East Hampton pool facility</td><td>Venue agreement needed</td></tr>
+<tr><td class="item-name">Ropes course facility reservation</td><td>1 session (MS)</td><td>TBD ropes course facility</td><td>Vendor needed</td></tr>
+</tbody>
+</table>
+
+<!-- ── WEEK 7 ── -->
+<div class="week-supply-head">Week 7 &mdash; The Sirens</div>
+<div class="week-supply-sub">Percussion/rattles, ikebana, drum circle, embroidery, cigar box guitar. Pool course, water polo, capture the flag, slackline.</div>
+
+<div class="workshop-label">WonderLab: The Siren's Rattle <span class="level-tag">&mdash; Percussion Concert</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Dried gourds or small containers</td><td>24</td><td class="amazon">Search Amazon for: mini dried gourds craft; small wooden containers</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Dried beans, rice, shells, seeds</td><td>1 lb each</td><td>Grocery / craft supply</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Non-toxic paint + brushes</td><td>6 colors, 20 brushes</td><td class="amazon">Search Amazon for: washable tempera paint set kid safe</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Masking tape, ribbon, twine</td><td>Assorted</td><td class="amazon">Search Amazon for: masking tape 1 inch; natural jute twine</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L1: The Siren's Discipline <span class="level-tag">&mdash; Ikebana Floral Arrangement</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Kenzan (pin frogs)</td><td>20</td><td class="amazon">Search Amazon for: kenzan pin frog ikebana 2-inch</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Shallow ikebana vessels / dishes</td><td>20</td><td class="amazon">Search Amazon for: ikebana vase shallow ceramic dish</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Floral shears (kid-safe)</td><td>20</td><td class="amazon">Search Amazon for: floral scissors blunt tip kid</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fresh seasonal flowers + branches</td><td>Per session, locally sourced</td><td>Local florist / farm stand</td><td><span class="custom-tag buy">Buy</span> &mdash; Weekly delivery</td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2 + MS: The Siren's Mark + The Siren's Instrument <span class="level-tag">&mdash; Embroidery &amp; Cigar Box Guitar (split week, Fluo for guitar)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Embroidery hoops (6-inch L2, 8-inch MS)</td><td>20 each size</td><td class="amazon">Search Amazon for: embroidery hoop 6-inch bamboo 12 pack; embroidery hoop 8-inch bamboo</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Embroidery floss (DMC, assorted)</td><td>100 skeins</td><td class="amazon">Search Amazon for: DMC embroidery floss assorted 100 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Embroidery needles</td><td>40</td><td class="amazon">Search Amazon for: embroidery needles assorted 30 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Muslin / cotton fabric</td><td>5 yards</td><td class="amazon">Search Amazon for: unbleached muslin cotton fabric yard</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Transfer pens + patterns</td><td>20 pens</td><td class="amazon">Search Amazon for: embroidery transfer pen water soluble</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Cigar box guitar blanks</td><td>20 kits</td><td>Fluo fabricates</td><td><span class="custom-tag fluo">Fluo</span> <span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Guitar strings, tuning pegs, bridges</td><td>20 sets</td><td class="amazon">Search Amazon for: cigar box guitar parts kit strings tuners</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Hand drums (djembes, child-sized) for drum circle</td><td>20</td><td class="amazon">Search Amazon for: djembe drum child sized 8-inch</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 7 <span class="level-tag">&mdash; Siren's Pool (WL), Water Polo (L1), Slackline (L1), CTF+Ropes (MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Swim-through hoops (weighted, pool)</td><td>6</td><td class="amazon">Search Amazon for: weighted swim through hoops pool</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Water polo balls (size 3, youth)</td><td>6</td><td class="amazon">Search Amazon for: water polo ball size 3 youth</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Slackline kit (12-foot, ratchet + tree protectors)</td><td>2</td><td class="amazon">Search Amazon for: slackline kit beginner 50 foot</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Flags + flag stations (CTF)</td><td>20 flags, 4 stations</td><td class="amazon">Search Amazon for: capture the flag outdoor game set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<!-- ── WEEK 8 ── -->
+<div class="week-supply-head">Week 8 &mdash; Scylla &amp; Charybdis</div>
+<div class="week-supply-sub">Fishing week: fish-ID relays (WL), bamboo rod building + casting (L1), spin/fly-casting + fly-tying (L2), shore fishing + fillet + charter (MS). Obstacle course, slackline, beach volleyball, triathlon.</div>
+
+<div class="workshop-label">WonderLab: Eyes in the Tide <span class="level-tag">&mdash; Fish-ID Relay, Dive-and-Retrieve, Sea Shanty</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Laminated fish-ID cards (Atlantic species, 30+ set)</td><td>3 sets</td><td class="amazon">Search Amazon for: fish identification cards Atlantic species laminated</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Weighted dive-and-retrieve fish targets (pool-safe)</td><td>20</td><td class="amazon">Search Amazon for: dive toys fish weighted pool</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Relay race lane markers</td><td>10</td><td>See cones (shared)</td><td></td></tr>
+<tr><td class="item-name">Sea shanty song sheets</td><td>60 copies</td><td>Printed in-house</td><td><span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Waterproof species poster (dock visit)</td><td>2</td><td class="amazon">Search Amazon for: Atlantic fish species poster waterproof</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L1: Crafting the Catch <span class="level-tag">&mdash; Bamboo Fishing Rod Build + Casting Clinic</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Bamboo cane blanks (8-ft lengths)</td><td>24</td><td class="amazon">Search Amazon for: bamboo cane pole 8 foot fishing</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fishing line, hooks, sinkers, bobbers</td><td>Assorted tackle</td><td class="amazon">Search Amazon for: kids fishing tackle kit beginner</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Cork handles, guides, thread wrapping</td><td>20 sets</td><td class="amazon">Search Amazon for: fishing rod building kit cork handle guide set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Casting practice plugs (hookless)</td><td>20</td><td class="amazon">Search Amazon for: casting practice plug hookless rubber</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2: The Patient Hunter <span class="level-tag">&mdash; Spin-Casting, Fly-Casting, Fly-Tying</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Spin-casting rods and reels</td><td>8 sets</td><td class="amazon">Search Amazon for: Ugly Stik youth spinning rod reel combo</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fly-casting rods + reels</td><td>6 sets</td><td class="amazon">Search Amazon for: fly fishing rod reel combo beginner 5wt</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fly-tying vise + materials (feathers, thread, hooks)</td><td>6 vises, bulk materials</td><td class="amazon">Search Amazon for: fly tying vise kit beginner materials</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Practice casting targets (hula hoops)</td><td>6</td><td class="amazon">Search Amazon for: hula hoop flat 24-inch</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">MS: The Deep Catch <span class="level-tag">&mdash; Shore Fishing, Fillet Relay, Charter Trip (Specialist-led)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Shore-fishing rod and reel combos (variety)</td><td>10 sets</td><td class="amazon">Search Amazon for: saltwater spinning rod reel combo surf</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Tackle (saltwater hooks, sinkers, leaders, lures)</td><td>Assorted</td><td class="amazon">Search Amazon for: saltwater fishing tackle kit surf</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fillet knives + cutting boards</td><td>6 knives, 4 boards</td><td class="amazon">Search Amazon for: fillet knife fish 7-inch; large cutting board fish</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Cut-resistant gloves</td><td>10 pairs</td><td class="amazon">Search Amazon for: cut resistant gloves kids fish fillet</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Charter boat (Montauk, 1.5-hr trips &times; 2)</td><td>2 trips</td><td>Local charter, Montauk Harbor</td><td>Vendor needed &mdash; see Vendor List</td></tr>
+<tr><td class="item-name">Coolers + ice</td><td>4 large coolers</td><td class="amazon">Search Amazon for: Coleman 48 quart cooler</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 8 <span class="level-tag">&mdash; Spray Course (WL), Slackline (L1), Beach Volleyball (L2), Triathlon (MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Sprinkler arches (adjustable)</td><td>3</td><td class="amazon">Search Amazon for: sprinkler arch adjustable outdoor</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Slackline kit</td><td>See W7</td><td>Shared</td><td></td></tr>
+<tr><td class="item-name">Beach volleyball net + balls</td><td>See W1</td><td>Shared</td><td></td></tr>
+<tr><td class="item-name">Ultimate discs (175g, competition)</td><td>6</td><td class="amazon">Search Amazon for: Discraft Ultra-Star ultimate disc</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<!-- ── WEEK 9 ── -->
+<div class="week-supply-head">Week 9 &mdash; The Return to Ithaca</div>
+<div class="week-supply-sub">All-Camp Trojan Horse build. WL adorns, L1 paints panels, L2 frames the skeleton, MS engineers + hosts the Ithaca Table dinner + bonfire.</div>
+
+<div class="workshop-label">WonderLab: Adorning the Horse <span class="level-tag">&mdash; Decorative finishing, garlands, gift-wrapping</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Tempera + acrylic paints</td><td>12 colors</td><td class="amazon">Search Amazon for: acrylic paint set 12 colors large tube</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Wide + fine brushes</td><td>30</td><td class="amazon">Search Amazon for: paint brush set kids assorted sizes</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Fabric scraps, ribbon, twine</td><td>Assorted (5 lbs)</td><td class="amazon">Search Amazon for: fabric scraps assorted; satin ribbon assorted</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Dried flowers + greenery</td><td>Assorted bundles</td><td>Local florist / farm stand</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Wrapping cloth + small gift tokens</td><td>20 cloths, 20 tokens</td><td class="amazon">Search Amazon for: furoshiki wrapping cloth small; small wooden animal figurines</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Wood glue + low-temp glue guns</td><td>See earlier</td><td>Shared</td><td></td></tr>
+<tr><td class="item-name">Sandpaper (fine grit)</td><td>20 sheets</td><td class="amazon">Search Amazon for: sandpaper 220 grit sheets 25 pack</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Wooden beads, painted dowels</td><td>Assorted</td><td class="amazon">Search Amazon for: natural wooden beads assorted; colored wooden dowels</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L1: The Horse's Skin <span class="level-tag">&mdash; Panel painting, base coat, detail, sealing</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Pre-cut plywood panels (sized to fit L2's frame)</td><td>12 panels</td><td><span class="custom-tag fluo">Fluo</span> pre-cuts to spec</td><td><span class="custom-tag fluo">Fluo</span> <span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Exterior acrylic paint + primer</td><td>6 quarts</td><td class="amazon">Search Amazon for: exterior acrylic craft paint quart</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Clear polyurethane sealer (spray)</td><td>4 cans</td><td class="amazon">Search Amazon for: clear polyurethane spray outdoor</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">L2: The Horse's Bones <span class="level-tag">&mdash; Structural framing, raising, stress test</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Dimensional lumber (2&times;4s, 2&times;6s, 4&times;4 posts)</td><td>Per engineering plan</td><td>Local lumber yard</td><td><span class="custom-tag fluo">Fluo</span> designs, camp buys lumber</td></tr>
+<tr><td class="item-name">Carriage bolts, lag screws, bracket hardware</td><td>Assorted</td><td class="amazon">Search Amazon for: carriage bolt assortment; L-bracket set heavy duty</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Plywood sheets (structural)</td><td>4 sheets</td><td>Local lumber yard</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Power tools (drill, circular saw &mdash; adult-only)</td><td>2 each</td><td>Fluo provides</td><td><span class="custom-tag fluo">Fluo</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">MS: The Engineers of Troy + The Ithaca Table <span class="level-tag">&mdash; Mechanical integration + farewell dinner + bonfire</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Hinge hardware, piano hinges, barrel bolts, latches</td><td>Per design</td><td class="amazon">Search Amazon for: piano hinge 12-inch; barrel bolt latch set</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Rope + pulley system (drawbridge / trap door)</td><td>2 pulleys, 50 ft rope</td><td class="amazon">Search Amazon for: pulley block tackle set; manila rope 1/2 inch 50ft</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Ithaca Table dinner ingredients</td><td>Full dinner for ~100</td><td>Local sources + chef partner (see Vendors)</td><td><span class="custom-tag buy">Buy</span> &mdash; Menu TBD with chef</td></tr>
+<tr><td class="item-name">Table settings (plates, cutlery, linens)</td><td>100 settings</td><td>Rental or purchase</td><td>Rental preferred</td></tr>
+<tr><td class="item-name">Candles, table decorations</td><td>Assorted</td><td class="amazon">Search Amazon for: taper candle holders brass; linen table runner natural</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Bonfire: firewood, kindling, fire pit</td><td>1 cord wood, fire pit</td><td>Local firewood delivery</td><td><span class="custom-tag buy">Buy</span> &mdash; Needs fire permit</td></tr>
+<tr><td class="item-name">Portable fire pit (if beach requires)</td><td>1</td><td class="amazon">Search Amazon for: portable fire pit beach steel</td><td><span class="custom-tag buy">Buy</span></td></tr>
+<tr><td class="item-name">Marshmallows, skewers (post-dinner)</td><td>200 marshmallows, 50 skewers</td><td>Grocery</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<div class="workshop-label">Physical Challenges &mdash; Week 9 <span class="level-tag">&mdash; Homecoming Games (WL), Suitors' Gauntlet (L1), Final Stand (L2), Final Odyssey (MS)</span></div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Cargo net, tug-of-war rope, kickballs</td><td>Shared from earlier weeks</td><td>Already purchased</td><td></td></tr>
+<tr><td class="item-name">Ultimate discs (competition weight)</td><td>See W8</td><td>Shared</td><td></td></tr>
+<tr><td class="item-name">Archery equipment</td><td>See W4</td><td>Shared</td><td></td></tr>
+<tr><td class="item-name">Championship medals / ribbons</td><td>80</td><td class="amazon">Search Amazon for: award medals bulk gold silver bronze ribbon</td><td><span class="custom-tag buy">Buy</span></td></tr>
+</tbody>
+</table>
+
+<!-- ── SIDE QUEST MATERIALS ── -->
+<div class="week-supply-head">Side Quest Materials &mdash; All 53 Quests</div>
+<div class="week-supply-sub">Grouped by material category. Many quests share the same supplies.</div>
+
+<details class="inner-section">
+<summary>Nature Quests (Animal Voices, Bird Watcher, Fossil Hunter, Naturalist Trifecta, Tree Identifier)</summary>
+<div class="inner-body">
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Kid-size binoculars (8&times;21 compact)</td><td>10</td><td class="amazon">Search Amazon for: kids binoculars 8x21 compact</td></tr>
+<tr><td class="item-name">Field guides (birds, trees, fossils, insects)</td><td>4 each</td><td class="amazon">Search Amazon for: National Geographic Kids Bird Guide; Peterson First Guide to Trees; Fossils for Kids field guide</td></tr>
+<tr><td class="item-name">Magnifying glasses</td><td>10</td><td class="amazon">Search Amazon for: magnifying glass kids 4 inch</td></tr>
+<tr><td class="item-name">Blindfolds (sleep masks)</td><td>Shared with W2</td><td>See W2</td></tr>
+<tr><td class="item-name">Small bound notebooks (Moleskine Cahier pocket)</td><td>20</td><td class="amazon">Search Amazon for: Moleskine Cahier journal pocket plain 3 pack</td></tr>
+<tr><td class="item-name">Colored pencils (Prismacolor Junior, 12-pack)</td><td>10 packs</td><td class="amazon">Search Amazon for: Prismacolor Junior colored pencils 12 pack</td></tr>
+<tr><td class="item-name">Audio station / Bluetooth speaker for animal sounds</td><td>1 station</td><td>Use camp speaker + tablet</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details class="inner-section">
+<summary>Practical Skills Quests (Five Knots, Cube Solver, Speed Cuber, Juggler, Paper Pilot, Field Repair, Handy Person, etc.)</summary>
+<div class="inner-body">
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Paracord (4-ft lengths, 2 colors per camper)</td><td>200 ft total</td><td class="amazon">Search Amazon for: paracord 550 100 foot assorted colors</td></tr>
+<tr><td class="item-name">Carabiners + dowel rods (hitch practice)</td><td>10 each</td><td class="amazon">Search Amazon for: carabiner clip set; wooden dowel 12-inch thick</td></tr>
+<tr><td class="item-name">Driftwood planks / pine boards (12" &times; 4")</td><td>20</td><td class="amazon">Search Amazon for: unfinished pine board 12x4</td></tr>
+<tr><td class="item-name">Rubik's cubes (speed cubes)</td><td>20</td><td class="amazon">Search Amazon for: speed cube 3x3 smooth turning</td></tr>
+<tr><td class="item-name">Juggling balls (beginner)</td><td>20 sets of 3</td><td class="amazon">Search Amazon for: juggling balls beginner set 3 pack</td></tr>
+<tr><td class="item-name">Paper (for paper airplanes)</td><td>200 sheets printer paper</td><td>Bulk paper supply</td></tr>
+<tr><td class="item-name">Basic tool set (screwdriver, pliers, wrench, tape measure)</td><td>4 sets</td><td class="amazon">Search Amazon for: basic household tool set kids</td></tr>
+<tr><td class="item-name">Tire pressure gauge, motor oil container (demo)</td><td>2 each</td><td class="amazon">Search Amazon for: tire pressure gauge digital; motor oil funnel</td></tr>
+<tr><td class="item-name">Sewing kit (needle, thread, buttons, patches)</td><td>10 kits</td><td class="amazon">Search Amazon for: hand sewing kit beginner compact</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details class="inner-section">
+<summary>Performance &amp; Communication Quests (Joke Teller, Poem Speaker, Prepared Speaker, Impromptu Speaker, Formal Introduction, Debate Basics, Active Listener)</summary>
+<div class="inner-body">
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Poetry anthology (age-appropriate)</td><td>4 copies</td><td class="amazon">Search Amazon for: A Child's Garden of Verses; Poetry Speaks to Children</td></tr>
+<tr><td class="item-name">Joke books (age-appropriate)</td><td>4 copies</td><td class="amazon">Search Amazon for: National Geographic Kids joke book</td></tr>
+<tr><td class="item-name">Index cards (cue cards for speeches)</td><td>200</td><td class="amazon">Search Amazon for: index cards 3x5 ruled 100 pack</td></tr>
+<tr><td class="item-name">Stopwatch / timer</td><td>Shared</td><td>See physical challenge supplies</td></tr>
+<tr><td class="item-name">Recording device (Plaud / phone / tablet)</td><td>2</td><td>Camp devices or: Search Amazon for: Plaud AI voice recorder</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details class="inner-section">
+<summary>Cultural &amp; Academic Quests (Flags, Greek Alphabet, Secret Script, Cipher Cracker, Polyglot Greeter, Classical Ear, Art Spotter/Connoisseur/Authority, Film Literate)</summary>
+<div class="inner-body">
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Blank index cards (flashcard sets)</td><td>500</td><td class="amazon">Search Amazon for: blank index cards 3x5 500 pack</td></tr>
+<tr><td class="item-name">Colored pencils / fine-point pens</td><td>Shared across program</td><td>See earlier</td></tr>
+<tr><td class="item-name">Printed Greek alphabet reference sheets</td><td>20</td><td>Printed in-house</td></tr>
+<tr><td class="item-name">Printed cipher/code reference sheets</td><td>20</td><td>Printed in-house</td></tr>
+<tr><td class="item-name">Art postcards / prints (20 famous works)</td><td>1 set of 20</td><td class="amazon">Search Amazon for: famous paintings postcard set 100</td></tr>
+<tr><td class="item-name">Classical music playlist (camp speaker)</td><td>1 curated playlist</td><td>Spotify/Apple Music &mdash; prepared by staff</td></tr>
+<tr><td class="item-name">Film screening setup (projector, screen, speakers)</td><td>1</td><td class="amazon">Search Amazon for: portable projector 1080p; projector screen 100-inch</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details class="inner-section">
+<summary>Life Skills Quests (Coffee &amp; Tea, Cold Email, Deal Spotter, Tie Master, Hair Braiding, Knife Sharpener, Road-Ready, Card Trickster/Shark, Whittling series)</summary>
+<div class="inner-body">
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td class="item-name">French press + pour-over setup</td><td>2 each</td><td class="amazon">Search Amazon for: Bodum French press 34oz; Hario V60 pour over set</td></tr>
+<tr><td class="item-name">Coffee beans + loose leaf tea</td><td>1 lb each</td><td>Local roaster / grocery</td></tr>
+<tr><td class="item-name">Playing cards (Bicycle brand)</td><td>10 decks</td><td class="amazon">Search Amazon for: Bicycle playing cards standard 12 pack</td></tr>
+<tr><td class="item-name">Neckties (for practice)</td><td>10</td><td class="amazon">Search Amazon for: necktie solid color bulk assorted</td></tr>
+<tr><td class="item-name">Hair braiding mannequin heads</td><td>4</td><td class="amazon">Search Amazon for: mannequin head hair braiding practice</td></tr>
+<tr><td class="item-name">Whittling knives (age-appropriate)</td><td>10</td><td class="amazon">Search Amazon for: Morakniv wood carving knife 120; Opinel No. 7 carving</td></tr>
+<tr><td class="item-name">Basswood blanks (spoon, knife, set shapes)</td><td>40 blanks</td><td class="amazon">Search Amazon for: basswood carving blanks spoon</td></tr>
+<tr><td class="item-name">Cut-resistant gloves (whittling)</td><td>10 pairs</td><td class="amazon">Search Amazon for: cut resistant gloves kids level 5</td></tr>
+<tr><td class="item-name">Knife sharpening stones (whetstone set)</td><td>4</td><td class="amazon">Search Amazon for: whetstone knife sharpening set 1000 6000</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details class="inner-section">
+<summary>Origami + Skip Stones + Star Finder</summary>
+<div class="inner-body">
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Origami paper (6" &times; 6", assorted)</td><td>500 sheets</td><td class="amazon">Search Amazon for: origami paper 6 inch 500 sheet assorted</td></tr>
+<tr><td class="item-name">Origami instruction book (beginner + intermediate)</td><td>2</td><td class="amazon">Search Amazon for: origami book beginner to intermediate</td></tr>
+<tr><td class="item-name">Flat skipping stones (or practice pebbles)</td><td>Collected from beach</td><td>Free &mdash; beach sourced</td></tr>
+<tr><td class="item-name">Star chart / planisphere</td><td>10</td><td class="amazon">Search Amazon for: star chart planisphere latitude 40</td></tr>
+<tr><td class="item-name">Red flashlights (for night sky)</td><td>4</td><td class="amazon">Search Amazon for: red LED flashlight astronomy</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<!-- ── GENERAL / SHARED SUPPLIES ── -->
+<div class="week-supply-head">General / Shared Supplies</div>
+<div class="week-supply-sub">Items used across multiple weeks and activities.</div>
+
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Qty</th><th>Source</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">First aid kits (comprehensive)</td><td>4</td><td class="amazon">Search Amazon for: first aid kit 300 piece outdoor camp</td><td>One per age level</td></tr>
+<tr><td class="item-name">Sunscreen (SPF 50, bulk)</td><td>12 bottles</td><td class="amazon">Search Amazon for: Banana Boat sunscreen SPF 50 family size</td><td>Replenish weekly</td></tr>
+<tr><td class="item-name">Bug spray (DEET-free)</td><td>6 bottles</td><td class="amazon">Search Amazon for: Natrapel bug spray DEET-free pump</td><td></td></tr>
+<tr><td class="item-name">Water coolers + cups</td><td>4 coolers, 200 cups</td><td class="amazon">Search Amazon for: Igloo 5 gallon water cooler; paper cone cups 200</td><td>Refill daily</td></tr>
+<tr><td class="item-name">Folding tables (6 ft)</td><td>6</td><td class="amazon">Search Amazon for: Lifetime folding table 6 foot</td><td>Multi-use</td></tr>
+<tr><td class="item-name">Pop-up canopy tents (10 &times; 10)</td><td>4</td><td class="amazon">Search Amazon for: pop-up canopy tent 10x10 UV protection</td><td>Beach + field shade</td></tr>
+<tr><td class="item-name">Walkie-talkies (staff communication)</td><td>8</td><td class="amazon">Search Amazon for: Motorola Talkabout T100 walkie talkie</td><td></td></tr>
+<tr><td class="item-name">Clipboards + pens</td><td>20 clipboards, 40 pens</td><td class="amazon">Search Amazon for: clipboard standard letter size 12 pack</td><td>Shared all summer</td></tr>
+<tr><td class="item-name">Trash bags + recycling bins</td><td>200 bags, 8 bins</td><td class="amazon">Search Amazon for: trash bags 33 gallon 100 pack; recycling bin blue 23 gallon</td><td></td></tr>
+<tr><td class="item-name">Printer + paper + laminator</td><td>1 each</td><td>Existing or: Search Amazon for: Brother laser printer; laminator machine 13 inch</td><td>For side quest sheets, song sheets, etc.</td></tr>
+</tbody>
+</table>
+
+</div>
+</details>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 3: THINGS TO MAKE / FLUO CAN MAKE
+     ═══════════════════════════════════════════════════════════════ -->
+<details class="ops-section" id="fabrication">
+<summary>
+  <span class="section-num">3</span>
+  <span class="section-title">Things to Make / Fluo Can Make</span>
+</summary>
+<div class="section-body">
+
+<p class="ops-prose">Three categories of fabrication: items Fluo builds in their shop, items camp staff build before summer, and items kids make during workshops (informational only &mdash; not an action item for ops).</p>
+
+<div class="sub-head">Fluo Builds (in shop, delivered before or during summer)</div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Week</th><th>Description</th><th>Lead Time</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Wooden boat kit blanks</td><td>W1</td><td>Eastern white cedar planks pre-cut to model boat dimensions, pre-drilled for assembly. 20 kits.</td><td>4 weeks pre-camp</td></tr>
+<tr><td class="item-name">Trebuchet frame components</td><td>W4</td><td>Pre-cut lumber for 10 trebuchet kits: arms, bases, axle mounts. Campers assemble on-site.</td><td>4 weeks pre-camp</td></tr>
+<tr><td class="item-name">Cigar box guitar blanks</td><td>W7</td><td>Cigar boxes sourced, necks pre-shaped from hardwood, pre-drilled for tuner pegs. 20 kits.</td><td>6 weeks pre-camp</td></tr>
+<tr><td class="item-name">Trojan Horse structural frame</td><td>W9</td><td>Engineering plans + pre-cut major structural members (4&times;4 legs, 2&times;6 spine, cross-bracing). L2 campers assemble with Fluo oversight.</td><td>4 weeks pre-camp (plans); lumber delivered W8</td></tr>
+<tr><td class="item-name">Surfboard shaping racks</td><td>W5</td><td>2 padded wooden racks that hold foam blanks stable during shaping. Portable.</td><td>4 weeks pre-camp</td></tr>
+<tr><td class="item-name">Darkroom setup</td><td>W6</td><td>Portable darkroom: lightproof tent/box, safe light, enlarger mount, chemical trays, ventilation. Fits inside a JCH room.</td><td>6 weeks pre-camp</td></tr>
+<tr><td class="item-name">Pre-cut plywood panels (Trojan Horse skin)</td><td>W9</td><td>Plywood panels CNC-cut or jigsaw-cut to fit the horse frame. L1 paints them; they bolt onto L2's skeleton.</td><td>Deliver W8</td></tr>
+</tbody>
+</table>
+
+<div class="sub-head">Camp Builds Before Summer (staff + volunteers)</div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Description</th><th>Who Makes It</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Driftwood Trophy</td><td>A large driftwood sculpture trophy awarded to the overall summer champion level. Collected from East Hampton beaches, assembled and mounted on a base.</td><td>Camp staff + volunteer<br><span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Challenge Board</td><td>Wall-mounted board tracking weekly physical challenge pass/fail by camper. Copper-leafed header, pegs or pockets for name cards. Navy + copper color scheme.</td><td>Camp staff<br><span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Mastery Board</td><td>Large wall display tracking side quest completion by tier (Sprint / Voyage / Quest / Odyssey). Pins, patches, or magnets per camper row.</td><td>Camp staff<br><span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Station signs (obstacle courses)</td><td>Wooden signs for each station in physical challenge courses. Branded with Odyssey visual language.</td><td>Camp staff or Fluo<br><span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Odyssey Logbook templates</td><td>Bound journal template for each camper. Table of contents, weekly reflection pages, side quest check-off pages, wax seal page. Printed and bound.</td><td>Design by staff, print by vendor<br><span class="custom-tag build">Make</span></td></tr>
+<tr><td class="item-name">Sea shanty song sheets</td><td>Printed, laminated lyric sheets for W8 sea shanties. Kid-friendly versions.</td><td>Staff prints + laminates</td></tr>
+<tr><td class="item-name">Side quest reference cards</td><td>Laminated card per quest with kid instructions, approach steps, and pass criteria. Kept at quest stations.</td><td>Staff prints + laminates</td></tr>
+</tbody>
+</table>
+
+<div class="sub-head">Kids Make During Camp (informational &mdash; no ops action)</div>
+<ul class="ops-list">
+<li><strong>W1:</strong> Wax-sealed letters (WL), treasure maps (L1), calligraphy short stories (L2), model wooden boats (MS)</li>
+<li><strong>W2:</strong> Herb garden boxes (WL), French macarons (L1), tempered chocolates (L2), omakase sushi plates (MS)</li>
+<li><strong>W3:</strong> Clay Cyclops lanterns (WL), coil/slab pottery vessels (L1), wheel-thrown bowls (L2), forged steel hooks (MS)</li>
+<li><strong>W4:</strong> Rokkaku kites (WL), marbled paper + archery skill (L1), pottery + archery (L2), trebuchets (MS)</li>
+<li><strong>W5:</strong> Rube Goldberg machine (WL+L1 joint), scent formulas (L2), shaped surfboard (L2+MS joint)</li>
+<li><strong>W6:</strong> Shadow puppets + performance (WL), linocut prints (L1), Coptic-bound books (L2), darkroom photographs (MS)</li>
+<li><strong>W7:</strong> Percussion rattles + concert (WL), ikebana arrangements (L1), embroidery samplers (L2+MS), cigar box guitars (MS)</li>
+<li><strong>W8:</strong> Fish-ID mastery (WL), bamboo fishing rods (L1), hand-tied flies (L2), charter catch + fillet (MS)</li>
+<li><strong>W9:</strong> Trojan Horse &mdash; all camp: WL adorns, L1 paints, L2 frames, MS engineers + hosts Ithaca Table dinner</li>
+</ul>
+
+</div>
+</details>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 4: MERCH & ODYSSEY DESIGN
+     ═══════════════════════════════════════════════════════════════ -->
+<details class="ops-section" id="merch">
+<summary>
+  <span class="section-num">4</span>
+  <span class="section-title">Merch &amp; Odyssey Design</span>
+</summary>
+<div class="section-body">
+
+<p class="ops-prose">Everything a camper wears, carries, or keeps should reinforce the Odyssey identity. Design language: Homeric, classical, parchment + navy + copper. Think artifact, not swag.</p>
+
+<div class="sub-head">Core Camper Items</div>
+<table class="ops-table">
+<thead><tr><th>Item</th><th>Description</th><th>Production</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Brass wax seal stamp</td><td>One per camper, chosen on Day 1 of W1. Used throughout the summer to seal logbook entries, letters, and test results. Personal artifact.</td><td>Search Amazon for: brass wax seal stamp alphabet set</td><td>Must arrive before W1 Day 1</td></tr>
+<tr><td class="item-name">Odyssey Logbook</td><td>Bound journal (approx. 80 pages). Table of contents, weekly reflection pages, side quest tracking, wax seal page, autograph pages. Navy cover with copper foil title.</td><td>Custom print run &mdash; local bindery or online printer</td><td><span class="custom-tag build">Make</span> &mdash; Design in May, print in June</td></tr>
+<tr><td class="item-name">Camp T-shirt</td><td>One per camper. Navy base, copper/cream ink. Front: Alpha Odyssey crest. Back: all 9 week themes listed. Premium cotton, fitted.</td><td>Local screen printer or: Search Amazon for: Bella Canvas 3001 blank t-shirt navy</td><td>Design by May, print by June. Consider different design per week?</td></tr>
+<tr><td class="item-name">Mastery Board badges</td><td>Physical pins or iron-on patches per quest tier. Sprint = green, Voyage = blue, Quest = gold, Odyssey = wine/red. Awarded as campers complete quests.</td><td>Custom pin manufacturer or: Search Amazon for: blank enamel pin custom; iron-on patch blank custom</td><td>Design 4 tiers &times; camp logo. Order 200+ total.</td></tr>
+</tbody>
+</table>
+
+<div class="sub-head">Level-Specific Gear</div>
+<table class="ops-table">
+<thead><tr><th>Level</th><th>Item</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td class="item-name">WonderLab (K&ndash;1)</td><td>Bandana</td><td>Cream with navy Odyssey pattern. Tied around neck or head. Identifies youngest campers at a distance.</td></tr>
+<tr><td class="item-name">L1 (2nd&ndash;3rd)</td><td>Cap</td><td>Navy baseball cap with copper embroidered Odyssey crest. Practical for sun + identity.</td></tr>
+<tr><td class="item-name">L2 (4th&ndash;5th)</td><td>Arm band</td><td>Woven/embroidered arm band in copper + navy. Camp bracelet aesthetic. Durable for the whole summer.</td></tr>
+<tr><td class="item-name">MS (6th&ndash;8th)</td><td>Lanyard + ID</td><td>Navy lanyard with copper text, holding a camp ID card with camper photo and level. Mature look for oldest campers.</td></tr>
+</tbody>
+</table>
+
+<div class="sub-head">Event &amp; Display Items</div>
+<ul class="ops-list">
+<li><strong>Trojan Horse unveiling postcards:</strong> Commemorative postcards photographing the completed Trojan Horse on Main Beach. Printed same-day or next-day. Mailed to families as a final keepsake.</li>
+<li><strong>Weekly theme posters:</strong> One poster per week (9 total) displayed in the main hall. Each features the Odyssey chapter title, illustration, and key activities. Can be AI-generated artwork refined by staff.</li>
+<li><strong>Alpha Odyssey logo variants:</strong> Create a master logo with 9 weekly sub-variants incorporating each week's theme (ship for W1, lotus for W2, cyclops eye for W3, etc.). Use across signage, shirts, logbooks, digital.</li>
+<li><strong>Shoutout cards:</strong> Small printed cards (business-card size) that staff hand to campers during Shoutouts. Camper collects them in their logbook. Copper foil edge, navy text.</li>
+<li><strong>Parent-facing weekly recap cards:</strong> Postcard-sized recap of each week, mailed or handed out at Friday pickup. Photo + summary of what their child did.</li>
+</ul>
+
+<div class="sub-head">Design Language Guidelines</div>
+<ul class="ops-list">
+<li><strong>Palette:</strong> Navy (#0b1d2c), parchment cream (#f3e9cf), copper (#b87333), wine (#7a1e23). No bright colors. No neon. This is Homer, not Nickelodeon.</li>
+<li><strong>Typography:</strong> Young Serif for headers, Cardo for body, JetBrains Mono for labels. Same stack as the digital sites.</li>
+<li><strong>Motifs:</strong> Greek key (meander) borders, wax seal imagery, compass roses, ship silhouettes, olive branches, amphora shapes.</li>
+<li><strong>Tone:</strong> Earned, not given. Everything looks like it was found on a ship, not ordered from a catalog.</li>
+</ul>
+
+</div>
+</details>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5: BUSSING / TRANSPORTATION
+     ═══════════════════════════════════════════════════════════════ -->
+<details class="ops-section" id="bussing">
+<summary>
+  <span class="section-num">5</span>
+  <span class="section-title">Bussing / Transportation Needs</span>
+</summary>
+<div class="section-body">
+
+<p class="ops-prose">Primary venue is the Jewish Center of the Hamptons (JCH) in East Hampton. Most activities happen on-site or within walking distance. Off-site trips require bus/van transport. Assume ~80 campers + 12 staff = ~92 people max transport.</p>
+
+<div class="sub-head">Venue List with Travel Times from JCH</div>
+<table class="ops-table">
+<thead><tr><th>Venue</th><th>Address / Area</th><th>Drive Time</th><th>Weeks Used</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Jewish Center of the Hamptons (JCH)</td><td>44 Woods Lane, East Hampton</td><td>&mdash; (home base)</td><td>All weeks</td></tr>
+<tr><td class="item-name">Main Beach, East Hampton</td><td>101 Ocean Ave, East Hampton</td><td>~5 min</td><td>W1, W4, W5, W8, W9 (unveiling, soccer, kites, surf, bonfire)</td></tr>
+<tr><td class="item-name">Three Mile Harbor</td><td>Gann Road, East Hampton</td><td>~8 min</td><td>W1 (boat sail test), W3 (paddleboard)</td></tr>
+<tr><td class="item-name">Ditch Plains, Montauk</td><td>Ditch Plains Rd, Montauk</td><td>~25 min</td><td>W5 (surfing)</td></tr>
+<tr><td class="item-name">Cedar Point County Park</td><td>5 Cedar Point Rd, East Hampton</td><td>~10 min</td><td>W8 (shore fishing), field trips</td></tr>
+<tr><td class="item-name">Hither Hills State Park</td><td>164 Old Montauk Hwy, Montauk</td><td>~20 min</td><td>W7 (ropes course area), field trips</td></tr>
+<tr><td class="item-name">Quail Hill Farm, Amagansett</td><td>660 Old Stone Hwy, Amagansett</td><td>~10 min</td><td>W2 (herb foraging)</td></tr>
+<tr><td class="item-name">Ropes Course Facility (TBD)</td><td>TBD &mdash; East Hampton / Montauk area</td><td>~15 min (est.)</td><td>W6, W7 (MS ropes course)</td></tr>
+<tr><td class="item-name">Charter Boat Dock, Montauk</td><td>Montauk Harbor area</td><td>~25 min</td><td>W8 (MS charter fishing trips)</td></tr>
+<tr><td class="item-name">East Hampton Pool Facility</td><td>TBD &mdash; confirm venue</td><td>~5&ndash;10 min</td><td>W3, W5, W6, W7, W8 (all pool weeks)</td></tr>
+</tbody>
+</table>
+
+<div class="sub-head">Bus Requirements by Week</div>
+<table class="ops-table">
+<thead><tr><th>Week</th><th>Off-Site Days</th><th>Destination</th><th>Who Goes</th><th>Capacity Needed</th></tr></thead>
+<tbody>
+<tr><td>W1</td><td>Fri (sail test)</td><td>Three Mile Harbor</td><td>MS (20)</td><td>1 van/bus</td></tr>
+<tr><td>W2</td><td>Mon&ndash;Wed</td><td>Quail Hill Farm</td><td>WL (20)</td><td>1 van/bus</td></tr>
+<tr><td>W2</td><td>Mon&ndash;Thu</td><td>Pool</td><td>MS paddleboard</td><td>1 van/bus</td></tr>
+<tr><td>W3</td><td>Mon&ndash;Thu</td><td>Pool</td><td>L2 paddleboard</td><td>1 van/bus</td></tr>
+<tr><td>W4</td><td>Fri (kite test)</td><td>Beach</td><td>WL (20)</td><td>1 van/bus (or walk)</td></tr>
+<tr><td>W5</td><td>Mon&ndash;Fri</td><td>Ditch Plains (surfing)</td><td>L2+MS (40)</td><td>1 full bus</td></tr>
+<tr><td>W6</td><td>Wed or Thu</td><td>Ropes course</td><td>MS (20)</td><td>1 van/bus</td></tr>
+<tr><td>W6</td><td>Mon&ndash;Fri</td><td>Pool</td><td>WL+L1+MS (synchro, etc.)</td><td>1&ndash;2 buses</td></tr>
+<tr><td>W7</td><td>Mon&ndash;Fri</td><td>Pool</td><td>WL+L1 (pool course, water polo)</td><td>1 bus</td></tr>
+<tr><td>W7</td><td>Wed</td><td>Ropes course</td><td>MS (20)</td><td>1 van/bus</td></tr>
+<tr><td>W8</td><td>Thu&ndash;Fri</td><td>Montauk Harbor (charter)</td><td>MS (20, split into 2 trips)</td><td>1 van/bus</td></tr>
+<tr><td>W8</td><td>Wed</td><td>Cedar Point (shore fishing)</td><td>L2+MS (40)</td><td>1 full bus</td></tr>
+<tr><td>W8</td><td>Wed</td><td>Dock visit</td><td>WL (20)</td><td>1 van/bus</td></tr>
+<tr><td>W9</td><td>Fri</td><td>Main Beach (unveiling + bonfire)</td><td>All camp (80)</td><td>2 buses</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+  <div class="callout-label">Recommendation: Dedicated Transport</div>
+  <p>Given the frequency of off-site trips (nearly every week), a <strong>dedicated 15-passenger van + one 40-passenger bus contract</strong> for the full 9 weeks is more cost-effective than per-trip rentals. The van handles single-level trips (20 kids + staff); the bus handles multi-level days and the final all-camp beach event. Get quotes from both rental companies and school bus contractors in the East Hampton area.</p>
+</div>
+
+</div>
+</details>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 6: VENDOR LIST
+     ═══════════════════════════════════════════════════════════════ -->
+<details class="ops-section" id="vendors">
+<summary>
+  <span class="section-num">6</span>
+  <span class="section-title">Vendor List</span>
+</summary>
+<div class="section-body">
+
+<p class="ops-prose">All external partners and specialists needed across the 9-week program. Status reflects current contracting state.</p>
+
+<div class="sub-head">Maker Partner</div>
+<table class="ops-table">
+<thead><tr><th>Vendor</th><th>Role</th><th>Weeks</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Fluo</td><td>Maker partner &mdash; woodworking (boat kits, trebuchets, cigar box guitars, Trojan Horse frame), surfboard shaping, darkroom photography. Fabricates custom kits in shop, leads on-site sessions.</td><td>W1, W4, W5, W6, W7, W9</td><td><span class="status contracted">Contracted</span></td></tr>
+</tbody>
+</table>
+
+<div class="sub-head">Contracted Specialists Needed</div>
+<table class="ops-table">
+<thead><tr><th>Specialist</th><th>Week(s)</th><th>Activity</th><th>Level(s)</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Ceramicist (wheel-throwing)</td><td>W3 + W4</td><td>Wheel-thrown pottery instruction, kiln access coordination</td><td>L1, L2</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Blacksmith</td><td>W3</td><td>Forging the Stake &mdash; portable forge, steel working instruction</td><td>MS</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Pastry chef (macarons)</td><td>W2</td><td>French macaron instruction, technique demonstration</td><td>L1</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Chocolatier</td><td>W2</td><td>Chocolate tempering instruction, mold work</td><td>L2</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Sushi chef</td><td>W2</td><td>Omakase sushi preparation, knife skills, fish handling</td><td>MS</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Bookbinder</td><td>W6</td><td>Coptic stitch bookbinding instruction</td><td>L2 (+ MS intro)</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Surf instructor(s)</td><td>W5</td><td>Surfing instruction at Ditch Plains, water safety</td><td>L2, MS</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Synchronized swim coach</td><td>W6</td><td>Synchronized swimming choreography and technique</td><td>MS</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Archery instructor</td><td>W4</td><td>Olympic-style archery, range safety, technique</td><td>L1, L2</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Fishing guide</td><td>W8</td><td>Shore fishing, fly-tying, casting instruction, charter trip captain</td><td>L2, MS</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Fishmonger / chef (fillet + cook)</td><td>W8</td><td>Fish fillet demonstration, cooking instruction for charter catch</td><td>MS</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Chef partner (Ithaca Table)</td><td>W9</td><td>Design and execute the farewell dinner menu with MS campers</td><td>MS</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Fire-safety staff</td><td>W9</td><td>Beach bonfire management and safety supervision</td><td>All camp</td><td><span class="status needed">Needed</span></td></tr>
+</tbody>
+</table>
+
+<div class="sub-head">Venue Partners</div>
+<table class="ops-table">
+<thead><tr><th>Venue</th><th>Role</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Jewish Center of the Hamptons (JCH)</td><td>Primary venue &mdash; indoor rooms, outdoor space, pool (if available)</td><td><span class="status contracted">Contracted</span></td></tr>
+<tr><td class="item-name">East Hampton pool facility</td><td>Pool access for paddleboard, synchro, water polo, pool obstacle courses</td><td><span class="status researching">Researching</span></td></tr>
+<tr><td class="item-name">Ropes course facility</td><td>High ropes / challenge course for MS W6+W7</td><td><span class="status researching">Researching</span></td></tr>
+<tr><td class="item-name">Quail Hill Farm</td><td>Herb foraging field trip W2</td><td><span class="status researching">Researching</span></td></tr>
+<tr><td class="item-name">Montauk charter boat operator</td><td>1.5-hr fishing charters for MS W8</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Surf school / outfitter (Ditch Plains area)</td><td>Surfboard + wetsuit rental, possible instructor partnership</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Local lumber yard</td><td>Lumber supply for boat kits, trebuchets, Trojan Horse</td><td><span class="status researching">Researching</span></td></tr>
+</tbody>
+</table>
+
+<div class="sub-head">Service Vendors</div>
+<table class="ops-table">
+<thead><tr><th>Vendor</th><th>Role</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Bus / van transport contractor</td><td>Dedicated vehicle(s) for off-site trips all summer</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Printer / bindery</td><td>Odyssey Logbook printing, posters, side quest cards</td><td><span class="status needed">Needed</span></td></tr>
+<tr><td class="item-name">Local screen printer</td><td>Camp t-shirts, bandanas, custom merch</td><td><span class="status researching">Researching</span></td></tr>
+<tr><td class="item-name">Photographer</td><td>Camp photographer (daily), event photography (Trojan Horse, Ithaca Table)</td><td><span class="status needed">Needed</span></td></tr>
+</tbody>
+</table>
+
+</div>
+</details>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 7: PERMITS NEEDED
+     ═══════════════════════════════════════════════════════════════ -->
+<details class="ops-section" id="permits">
+<summary>
+  <span class="section-num">7</span>
+  <span class="section-title">Permits Needed</span>
+</summary>
+<div class="section-body">
+
+<p class="ops-prose">East Hampton has specific permitting requirements for beach events, open fires, food handling, and organized activities. Start permit applications no later than May 1.</p>
+
+<table class="ops-table">
+<thead><tr><th>Permit / Document</th><th>Issuing Authority</th><th>Needed For</th><th>Timeline</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="item-name">Beach fire permit</td><td>East Hampton Town / Fire Dept</td><td>W9 bonfire on Main Beach</td><td>Apply 30+ days in advance</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Beach activity permit</td><td>East Hampton Town Parks</td><td>Organized events at Main Beach (soccer tournaments, kite flying, Trojan Horse unveiling)</td><td>Apply 30+ days in advance</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Food handling permit / temporary food service</td><td>Suffolk County Dept of Health</td><td>W2 (macarons, chocolate, sushi), W9 (Ithaca Table dinner)</td><td>Apply 2&ndash;4 weeks in advance</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Archery range safety compliance</td><td>Internal / insurance review</td><td>W4 archery instruction (L1, L2)</td><td>Verify with insurer pre-camp</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Charter boat licensing verification</td><td>USCG / charter operator</td><td>W8 MS charter fishing trips in Montauk</td><td>Verify at time of booking</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Ropes course insurance / liability</td><td>Ropes course operator + camp insurer</td><td>W6, W7 MS high ropes sessions</td><td>Confirm with vendor at booking</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Pool usage agreement</td><td>Host pool facility</td><td>All pool-based physical challenges (W2&ndash;W8)</td><td>Execute before camp starts</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Transportation / field trip waivers</td><td>Internal (camp form, parent signature)</td><td>Every off-site day &mdash; standard camp waiver</td><td>Collect at registration</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Parent consent: blacksmithing</td><td>Internal (specific activity waiver)</td><td>W3 MS blacksmithing &mdash; open forge, hot metal</td><td>Collect before W3</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Parent consent: archery</td><td>Internal (specific activity waiver)</td><td>W4 L1+L2 archery instruction</td><td>Collect before W4</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Parent consent: water activities</td><td>Internal (specific activity waiver)</td><td>All paddleboard, surfing, pool, charter trip days</td><td>Collect at registration</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Parent consent: charter boat trip</td><td>Internal (specific activity waiver)</td><td>W8 MS Montauk charter &mdash; open ocean</td><td>Collect before W8</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Camp operating license</td><td>Suffolk County / NY State</td><td>General camp operations (if not covered by JCH umbrella)</td><td>Verify with legal counsel</td><td><span class="status tbd">TBD</span></td></tr>
+<tr><td class="item-name">Liability insurance (general + activities)</td><td>Camp insurer</td><td>Covers all activities, specialists, transport, water</td><td>Bind before camp starts</td><td><span class="status tbd">TBD</span></td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+  <div class="callout-label">Priority Actions</div>
+  <p>1. Beach fire permit and beach activity permit should be applied for first &mdash; East Hampton can be slow and restrictive.<br>
+  2. Food handling permits for W2 need to cover both cooking instruction (kids making food) and service (kids eating what they made).<br>
+  3. The charter boat operator must provide proof of USCG licensing and insurance before any booking is confirmed.<br>
+  4. All parent waivers should be built into the registration packet, not collected week-by-week.</p>
+</div>
+
+</div>
+</details>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 8: AI INTEGRATION GUIDE
+     ═══════════════════════════════════════════════════════════════ -->
+<details class="ops-section" id="ai">
+<summary>
+  <span class="section-num">8</span>
+  <span class="section-title">AI Integration Guide</span>
+</summary>
+<div class="section-body">
+
+<p class="ops-prose">AI is a tool, not a replacement. Every application below enhances what humans already do &mdash; it does not generate the experience itself. Three categories: AI for design and planning (staff use), AI for student creative work (guided, intentional), and AI for operations (backend automation).</p>
+
+<div class="sub-head-lg">Generative AI for Design &amp; Planning</div>
+
+<ul class="ops-list">
+<li><strong>Blueprints and reference images (Midjourney, DALL-E):</strong> Generate engineering-style drawings for woodworking projects &mdash; boat hull profiles for W1, Trojan Horse structural schematics for W9, trebuchet arm ratios for W4. Use as visual references that kids study before building, not as art they copy.</li>
+<li><strong>Shadow puppet storyboards (W6 WonderLab):</strong> Use AI storyboard generators to create scene-by-scene visual guides for the Underworld puppet show. Kids see the sequence, then build and perform their own interpretation.</li>
+<li><strong>Map templates for cartography (W1 L1):</strong> AI-generated topographic and nautical chart templates that kids annotate, label, and illustrate by hand. Provides the structural framework; kids fill in the meaning.</li>
+<li><strong>Weekly theme posters:</strong> Generate Odyssey-inspired artwork for each week's poster (the Cyclops, the Sirens, Circe's island, etc.) in the camp's visual style. Refine with staff input, print large-format.</li>
+<li><strong>Workshop prep sheets:</strong> AI-assisted creation of step-by-step visual instruction cards for each workshop, calibrated to the age level.</li>
+</ul>
+
+<div class="sub-head-lg">AI for Student Creative Work</div>
+
+<ul class="ops-list">
+<li><strong>Odyssey short stories (W1 calligraphy):</strong> Kids dictate a rough draft of their story into a recording device, receive AI-assisted editing suggestions (grammar, word choice, pacing), then hand-write the polished version in copperplate. The AI sharpens; the hand inscribes.</li>
+<li><strong>Percussion compositions (W7):</strong> AI music generation tools (e.g., Suno, Udio) create backing rhythms that kids play over during drum circle rehearsals. Kids learn to lock into a beat generated by a machine, then perform without it.</li>
+<li><strong>Menu design for Ithaca Table (W9 MS):</strong> MS campers use AI to research menu pairings, generate plating ideas, and draft menu cards. Chef partner reviews and adjusts. Campers hand-letter the final menus.</li>
+<li><strong>Surf art and board graphics (W5):</strong> AI-generated design inspiration for surfboard graphics. Kids sketch their own version, then paint it onto the shaped board.</li>
+<li><strong>Poetry and speech refinement (side quests):</strong> For the Prepared Speaker and Poem Speaker quests, kids can use AI to practice delivery &mdash; record, transcribe, get feedback on pacing and clarity, re-record.</li>
+</ul>
+
+<div class="sub-head-lg">Recording AI &amp; Transcription</div>
+
+<div class="callout">
+  <div class="callout-label">Tools: Plaud, Otter.ai, Whisper</div>
+  <p>Small, clip-on recording devices (Plaud) or phone-based transcription apps (Otter.ai) capture spoken words and convert them to text. OpenAI's Whisper can run locally for privacy. Use cases below.</p>
+</div>
+
+<ul class="ops-list">
+<li><strong>Friday pass/fail presentations:</strong> Auto-transcribe every camper's Friday workshop test presentation. The transcription goes into their digital portfolio &mdash; parents receive a text record of what their child said, alongside photos of what they made.</li>
+<li><strong>Limitless Launch speeches:</strong> Record the daily morning assembly. Capture any camper who speaks publicly. Transcribe and share highlights with parents in the weekly recap.</li>
+<li><strong>Side quest verbal tests:</strong> When a camper attempts a verbal side quest (Joke Teller, Formal Introduction, Prepared Speaker, Active Listener), record and transcribe. The transcription serves as the documented evidence for the Mastery Board.</li>
+<li><strong>Self-reflection tool:</strong> Record a child's "Formal Introduction" (side quest) or "Prepared Speaker" performance. Transcribe it. Let them read their own words in text. Seeing your spoken words on paper is a powerful self-reflection experience &mdash; kids notice their filler words, their pacing, their clarity. Then they practice and re-record.</li>
+</ul>
+
+<div class="sub-head-lg">AI for Operations</div>
+
+<ul class="ops-list">
+<li><strong>Automated attendance + side-quest tracking:</strong> Tablet-based check-in at dropoff. Each side quest station has a tablet where counselors log attempts and passes. Data feeds into a dashboard showing real-time Mastery Board status.</li>
+<li><strong>AI-powered photo sorting:</strong> Camp photographers shoot 500+ photos per day. AI photo tools (Google Photos, Apple Photos, or dedicated services like Foto.ai) auto-tag by camper face, week, activity type. Parents access a filtered gallery showing only their child.</li>
+<li><strong>Parent FAQ chatbot:</strong> A simple chatbot (powered by Claude, GPT, or similar) trained on the structured workshop data from the overview site. Parents can ask "What did my child do in Week 3?" and get a specific, accurate answer with links to the brief and photos.</li>
+<li><strong>Weather-contingent scheduling:</strong> AI reviews 10-day weather forecasts and flags days where outdoor activities (beach soccer, surfing, kite flying, bonfire) may need indoor alternatives. Suggests backup schedule adjustments automatically.</li>
+<li><strong>Supply inventory tracking:</strong> A simple spreadsheet or app where staff log material usage daily. AI predicts when consumables (paint, clay, paper, fishing tackle) will run low and generates reorder alerts.</li>
+<li><strong>End-of-summer portfolio generation:</strong> AI compiles each camper's data (quests completed, tests passed, transcribed presentations, tagged photos) into a personalized digital portfolio or printed booklet. The Odyssey Logbook is the analog version; this is the digital companion.</li>
+</ul>
+
+</div>
+</details>
+
+
+<div class="meander"></div>
+
+<footer class="colophon">
+  <div class="line">The sea does not grade on effort.</div>
+  Alpha Odyssey &middot; Ops Manual &middot; Summer 2026<br>
+  Jewish Center of the Hamptons &middot; East Hampton, NY
+</footer>
+
+</main>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     JAVASCRIPT: TOC active state
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+(function(){
+  const links = document.querySelectorAll('.toc-list a');
+  const sections = [];
+  links.forEach(a => {
+    const id = a.getAttribute('href').replace('#','');
+    const el = document.getElementById(id);
+    if(el) sections.push({el, a});
+  });
+
+  function update(){
+    let current = sections[0];
+    const scrollY = window.scrollY + 120;
+    for(const s of sections){
+      if(s.el.offsetTop <= scrollY) current = s;
+    }
+    links.forEach(a => a.classList.remove('active'));
+    if(current) current.a.classList.add('active');
+  }
+
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
+
+</body>
+</html>
